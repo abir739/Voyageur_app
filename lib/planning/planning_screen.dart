@@ -92,8 +92,8 @@ class _PlanningScreenState extends State<PlanningScreen> {
     // List of boxes to be built dynamically
     List<Widget> boxes = [];
     // Generate a random number of boxes between 3 and 10
-    //int numBoxes = 3 + DateTime.now().millisecond % 8;
-    int numBoxes = 5;
+    int numBoxes = 3 + DateTime.now().millisecond % 8;
+
     // Loop through the number of boxes and add them to the list
     for (int i = 0; i < numBoxes; i++) {
       for (int j = 0; j < activities.length; j++) {

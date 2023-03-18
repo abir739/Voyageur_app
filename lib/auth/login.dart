@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 //import 'package:voyageur_app/planning/planning_screen.dart'; // Import the planning screen
 import 'package:voyageur_app/planning/planning_test.dart';
 
@@ -12,16 +15,55 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
+  bool _isInternetConnected = false;
 
   get endDate => null;
 
   get startDate => null;
 
   @override
+  void initState() {
+    super.initState();
+    checkInternetConnection();
+  }
+
+  void checkInternetConnection() async {
+    bool isConnected = await InternetConnectionChecker().hasConnection;
+    setState(() {
+      _isInternetConnected = isConnected;
+    });
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _login() async {
+    final response = await http.post(
+      Uri.parse('http://localhost:3000/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': _emailController.text,
+        'password': _passwordController.text,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // Login successful
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      // Login failed
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login failed'),
+        ),
+      );
+    }
   }
 
   @override
@@ -62,8 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIcon: Icon(Icons.mail),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
+                        if (!_isInternetConnected ||
+                            value == null ||
+                            value.isEmpty ||
+                            !value.contains('@')) {
+                          return 'Please enter a valid email address';
                         }
                         return null;
                       },
@@ -77,8 +122,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIcon: Icon(Icons.lock),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
+                        if (!_isInternetConnected ||
+                            value == null ||
+                            value.isEmpty ||
+                            value.length < 8) {
+                          return 'Password must be at least 8 characters long';
                         }
                         return null;
                       },

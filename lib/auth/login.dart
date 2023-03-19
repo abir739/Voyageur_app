@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 //import 'package:voyageur_app/planning/planning_screen.dart'; // Import the planning screen
 import 'package:voyageur_app/planning/planning_test.dart';
 
@@ -11,28 +11,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+    ],
+  );
+  bool _isSignedIn = false;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
-  bool _isInternetConnected = false;
 
   get endDate => null;
 
   get startDate => null;
-
-  @override
-  void initState() {
-    super.initState();
-    checkInternetConnection();
-  }
-
-  void checkInternetConnection() async {
-    bool isConnected = await InternetConnectionChecker().hasConnection;
-    setState(() {
-      _isInternetConnected = isConnected;
-    });
-  }
 
   @override
   void dispose() {
@@ -63,6 +55,25 @@ class _LoginScreenState extends State<LoginScreen> {
           content: Text('Login failed'),
         ),
       );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+      setState(() {
+        _isSignedIn = account != null;
+      });
+    });
+    _googleSignIn.signInSilently();
+  }
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
     }
   }
 
@@ -104,8 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIcon: Icon(Icons.mail),
                       ),
                       validator: (value) {
-                        if (!_isInternetConnected ||
-                            value == null ||
+                        if (value == null ||
                             value.isEmpty ||
                             !value.contains('@')) {
                           return 'Please enter a valid email address';
@@ -122,8 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIcon: Icon(Icons.lock),
                       ),
                       validator: (value) {
-                        if (!_isInternetConnected ||
-                            value == null ||
+                        if (value == null ||
                             value.isEmpty ||
                             value.length < 8) {
                           return 'Password must be at least 8 characters long';

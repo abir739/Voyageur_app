@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Flutter UI Design",
+      "description": "Learn how to design beautiful UI screens using Flutter",
+      "image": "https://example.com/flutter-ui-design.png",
+      "author": "John Doe",
+      "published_at": "2022-03-15T14:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Building REST APIs with Node.js",
+      "description": "Learn how to build REST APIs using Node.js and Express",
+      "image": "https://example.com/nodejs-rest-apis.png",
+      "author": "Jane Smith",
+      "published_at": "2022-03-16T09:45:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Dart Programming Language",
+      "description": "Learn the basics of Dart programming language",
+      "image": "https://example.com/dart-programming.png",
+      "author": "Bob Johnson",
+      "published_at": "2022-03-17T16:15:00.000Z"
+    }
+  ]
+  

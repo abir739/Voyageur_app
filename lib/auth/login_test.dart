@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:voyageur_app/planning/planning_screen.dart'; // Import the planning screen
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:voyageur_app/planning/planning_test.dart';
+//import 'package:voyageur_app/planning/planning_screen.dart'; // Import the planning screen
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -8,20 +9,44 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _rememberMe = false;
-
-  get endDate => null;
-
-  get startDate => null;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+    ],
+  );
+  bool _isSignedIn = false;
 
   @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+      setState(() {
+        _isSignedIn = account != null;
+      });
+      if (_isSignedIn) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => PlanningScreen()),
+        );
+      }
+    });
+    _googleSignIn.signInSilently();
+  }
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _handleSignOut() async {
+    try {
+      await _googleSignIn.signOut();
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -48,70 +73,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 32.0),
               Form(
-                key: _formKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        prefixIcon: Icon(Icons.mail),
+                    if (!_isSignedIn)
+                      ElevatedButton(
+                        onPressed: _handleSignIn,
+                        child: Text('Sign in with Google'),
+                      )
+                    else
+                      Column(
+                        children: [
+                          Text('Signed in with Google'),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: _handleSignOut,
+                            child: Text('Sign out'),
+                          ),
+                        ],
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: _rememberMe,
-                          onChanged: (value) {
-                            setState(() {
-                              _rememberMe = value!;
-                            });
-                          },
-                        ),
-                        Text('Remember me'),
-                      ],
-                    ),
-                    SizedBox(height: 32.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // TODO: Handle login button pressed
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PlanningScreen(),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text('Log In'),
-                    ),
                   ],
                 ),
               ),

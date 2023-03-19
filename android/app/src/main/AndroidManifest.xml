@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.voyageur_app">
+
+    <!-- Autorisations pour l'authentification Google -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:label="voyageur_app"
         android:name="${applicationName}"
@@ -20,6 +25,12 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+
+              <meta-data android:name="com.google.android.geo.API_KEY"
+                         android:value="AIzaSyBrnU0k1oiJJLbFN59XEFXJFXClkO-ZL8c"/>
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

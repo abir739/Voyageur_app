@@ -1,0 +1,75 @@
+[
+    {
+        "sender_photo_url":
+            "https://randomuser.me/api/portraits/men/81.jpg",
+        "sender_name": "John Doe",
+        "sender_type": "Guide",
+        "message_type": "Upcoming trip",
+        "message_photo_url":
+            "https://images.unsplash.com/photo-1529778878640-34d72448e9c4",
+        "time": "9:00 AM",
+        "address": "456 Elm St, Anytown USA",
+        "activity_time": "Next week"
+      },
+    {
+      "sender_photo_url":
+          "https://randomuser.me/api/portraits/women/68.jpg",
+      "sender_name": "Linda Smith",
+      "sender_type": "Friend",
+      "message_type": "New restaurant",
+      "message_photo_url":
+          "https://media-cdn.tripadvisor.com/media/photo",
+          "time": "12:30 PM",
+          "address": "123 Main St, Anytown USA",
+          "activity_time": "Today at 6:00 PM"
+        },
+        {
+          "sender_photo_url":
+              "https://randomuser.me/api/portraits/men/81.jpg",
+          "sender_name": "John Doe",
+          "sender_type": "Guide",
+          "message_type": "Upcoming trip",
+          "message_photo_url":
+              "https://images.unsplash.com/photo-1529778878640-34d72448e9c4",
+          "time": "9:00 AM",
+          "address": "456 Elm St, Anytown USA",
+          "activity_time": "Next week"
+        },
+        {
+          "sender_photo_url":
+              "https://randomuser.me/api/portraits/women/77.jpg",
+          "sender_name": "Alice Smith",
+          "sender_type": "Administrator",
+          "message_type": "New activity",
+          "message_photo_url":
+              "https://images.unsplash.com/photo-1567684394701-93c579fca086",
+          "time": "Yesterday at 5:30 PM",
+          "address": "789 Oak St, Anytown USA",
+          "activity_time": "This Saturday at 10:00 AM"
+        },
+        {
+            "sender_photo_url":
+                "https://randomuser.me/api/portraits/men/81.jpg",
+            "sender_name": "John Doe",
+            "sender_type": "Guide",
+            "message_type": "Upcoming trip",
+            "message_photo_url":
+                "https://images.unsplash.com/photo-1529778878640-34d72448e9c4",
+            "time": "9:00 AM",
+            "address": "456 Elm St, Anytown USA",
+            "activity_time": "Next week"
+          },
+          {
+            "sender_photo_url":
+                "https://randomuser.me/api/portraits/women/68.jpg",
+            "sender_name": "Linda Smith",
+            "sender_type": "Friend",
+            "message_type": "New restaurant",
+            "message_photo_url":
+                "https://media-cdn.tripadvisor.com/media/photo",
+                "time": "12:30 PM",
+                "address": "123 Main St, Anytown USA",
+                "activity_time": "Today at 6:00 PM"
+              }
+      ]
+        

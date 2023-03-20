@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:voyageur_app/notification/notification.dart';
+//import 'package:voyageur_app/notification/notification.dart';
+import 'package:voyageur_app/notification/notification_test.dart';
 import 'package:voyageur_app/activites/hotels.dart';
 
 // the description of an activity

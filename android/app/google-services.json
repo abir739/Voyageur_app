@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "560351218436",
+    "project_id": "blocauth-253ec",
+    "storage_bucket": "blocauth-253ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560351218436:android:6c04b6ddea3eded8371e51",
+        "android_client_info": {
+          "package_name": "com.example.voyageur_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560351218436-omn0pcl64rpds21uc1l530vlccf2an3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voyageur_app",
+            "certificate_hash": "aaab9211a525d269a599f5996760aa44306da07a"
+          }
+        },
+        {
+          "client_id": "560351218436-fvlfnakk47bnfi5tlcatij6cp37la3ca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWQjvtSvAK5ckw0WfEO2HHko5SX65aeCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560351218436-c5ga89o7495qpr4e10rndg6e85pst1i6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "560351218436-l07qvo6j4s7b1a51bo843c5565coaane.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.voyageurApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

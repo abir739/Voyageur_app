@@ -29,6 +29,8 @@ class HotelPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -56,24 +58,39 @@ class HotelPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200.0,
-                    height: 220.0,
+                    width: 100.0,
+                    height: 260.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(image),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      time,
-                      style: TextStyle(fontSize: 14.0),
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                        width: 10,
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 163, 97, 175)
+                              .withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          time,
+                          style: TextStyle(
+                            color: Colors.purple,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
@@ -84,7 +101,7 @@ class HotelPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
@@ -105,15 +122,33 @@ class HotelPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      address,
-                      style: TextStyle(fontSize: 16.0),
-                    ),
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 8, width: 20),
+                      Container(
+                        child: Image.asset(
+                          'assets/images/Icon.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(height: 8, width: 8),
+                      Text(
+                        address,
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 8, 8, 8),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 16.0),
+                  Divider(
+                    color: Color.fromARGB(255, 189, 184, 184),
+                    thickness: 2.0,
+                  ),
+                  SizedBox(height: 126.0),
                   CommentSection(),
                 ],
               ),
@@ -310,6 +345,10 @@ class _CommentSectionState extends State<CommentSection> {
             ElevatedButton(
               onPressed: addComment,
               child: Text('Add Comment'),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFF4F46E5)),
+              ),
             ),
           ],
         ),

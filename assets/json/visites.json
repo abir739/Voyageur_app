@@ -1,0 +1,37 @@
+[
+    {
+    "imageUrl": "https://travelfree.info/wp-content/uploads/2020/06/tunisia-2425441_1280-e1593516163383.jpg",
+    "time": "10:00 - 12:30",
+    "name": "Sidi Bou Said",
+    "address": "Tunisia-tunis",
+    "description": "You could be forgiven for thinking that you’d made the hop across the Med to the islands of the Greek Aegean as you enter the vibrant interior of Sidi Bou Said town, sat just 20 kilometers from bustling Tunis.Yep, the sky-blue and whitewashed color scheme here is more than reminiscent of towns in Santorini and Mykonos.However, this one’s interesting hues were actually started by the French musicologist Rodolphe d’Erlanger."
+    },
+    {
+    "imageUrl": "https://www.planetware.com/photos-large/TUN/tunisia-tunis-carthage.jpg",
+    "time": "14:00 - 16:00 ",
+    "name": "Carthage",
+    "address": "Tunisia-tunis-carthage",
+    "description": "The very name of Carthage evokes romantic tales of Greek seafarers, figures like Aeneas and Dido from the heroic age, and stories of mighty battles on the Alps and Mediterranean Seas.That all makes it easy to see why this sprawling ruined site just outside of Tunis is one of the most-visited attractions in all of Tunisia."
+    },
+    {
+    "imageUrl": "https://www.planetware.com/wpimages/2020/09/tunisia-top-attractions-el-djem-amphitheater.jpg",
+    "time": "16:30 - 18:30",
+    "name": "El Djem Amphitheater",
+    "address": "Tunisia-El-Djem",
+    "description": "Colossal arches and elliptical amphitheaters to rival even the Colosseum in Rome are what mark the horizon of famous El Djem.Tagged by UNESCO, the city is a modern one built right atop an old one, with the occasional ruin of Roman homes and arcades popping up on the corners."
+    },
+    {
+        "imageUrl": "https://cdn.thecrazytourist.com/wp-content/uploads/2017/03/Dougga.jpg",
+        "time": "10:00 - 12:30",
+        "name": "Dougga",
+        "address": "Tunisia-tunis",
+        "description": "UNESCO World Heritage fame marks the crumbling peristyles and age-cracked temples of Dougga out from many of North Africa’s other mighty ancient sites.Once Roman, the remains of the entire city here are considered some of the best-preserved in the region.Travelers come to gawp at the looming Doric columns of the Dougga Theatre, standing tall over the green fields of the Beja Governorate.They come to walk the old cobbled Roman roads, or to see the relics of shrines to Jupiter and the Imperial Cult. There are also bathhouses, soaring mausoleums, and in-tact sewer systems to encounter."
+        },
+        {
+            "imageUrl": "https://cdn.thecrazytourist.com/wp-content/uploads/2017/03/Douz.jpg",
+            "time": "17:00 - 19:30",
+            "name": "Douz",
+            "address": "Tunisia-Douz",
+            "description": "It’s just a stone’s throw from Douz to the sweeping sand plains of the Jebil National Park – one of the great natural treasures of southern Tunisia.So, it’s not for nothing that this far-flung town in the south is considered the gateway to the Sahara.It’s home to purring camels, and weathered Berber tour guides who are eager to lead expeditions on humpback into the scorched wilds. "
+            }
+    ]

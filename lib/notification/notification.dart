@@ -3,6 +3,7 @@ import 'package:voyageur_app/models/notification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:voyageur_app/activites/hotels.dart';
+import '../activites/visites.dart';
 
 class NotificationsScreen extends StatefulWidget {
   @override
@@ -96,12 +97,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       children: [
                         SizedBox(height: 8),
                         Text('${notifications[index].time}'),
-                        SizedBox(height: 10),
+                        SizedBox(height: 16),
                         Row(
                           children: [
                             CircleAvatar(
                               backgroundImage: NetworkImage(
                                   notifications[index].messagePhotoUrl),
+                              radius:
+                                  40, // set the radius to half of the width and height
                             ),
                             SizedBox(height: 10),
                             Text(
@@ -217,11 +220,14 @@ void _showMenu(BuildContext context) {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.category),
+              leading: const Icon(Icons.map_sharp),
               title: const Text('Activié/Visite'),
               onTap: () {
                 // Navigate to activites screen when pressed
-                Navigator.pushNamed(context, '/Visite');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VisitesScreen()),
+                );
               },
             ),
           ],

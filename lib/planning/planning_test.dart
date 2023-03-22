@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:voyageur_app/notification/notification_test.dart';
 import 'package:voyageur_app/activites/hotels.dart';
 
+import '../activites/visites.dart';
+
 // the description of an activity
 class Activity {
   String name;
@@ -174,9 +176,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
                     children: [
                       Container(
                         child: Image.asset(
-                          'assets/images/flag3.png',
-                          width: 40,
-                          height: 40,
+                          'assets/images/Icon.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -432,11 +432,14 @@ void _showMenu(BuildContext context) {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.category),
+              leading: const Icon(Icons.map_sharp),
               title: const Text('Activié/Visite'),
               onTap: () {
                 // Navigate to activites screen when pressed
-                Navigator.pushNamed(context, '/Visite');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VisitesScreen()),
+                );
               },
             ),
           ],

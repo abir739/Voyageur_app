@@ -49,6 +49,7 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   shared_preferences: ^2.0.18
   twitter_login: ^4.3.1
+  flutter_svg: ^2.0.4
 
 
 dev_dependencies:

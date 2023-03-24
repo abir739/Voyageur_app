@@ -3,6 +3,7 @@ import 'package:voyageur_app/utils/next_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:voyageur_app/provider/sign_in_provider.dart';
 import 'package:voyageur_app/planning/planning_test.dart';
+//import 'package:voyageur_app/planning/planning_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  get plan => null;
+
   Future getData() async {
     final sp = context.read<SignInProvider>();
     sp.getDataFromSharedPreferences();
@@ -80,8 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  sp.userSignOut();
-                  nextScreenReplace(context, PlanningScreen());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PlanScreen(plan: plan)),
+                  );
                 },
                 child: const Text("Start your trip !",
                     style: TextStyle(

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resource>
     <string name="app_name">voyageur_app</string>
-    <string name="facebook_app_id">185436754202684</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">8f644670b29afc1e764c87238e5222ee</string>
+    <string name="facebook_app_id">131179306307792</string>
+    <string name="fb_login_protocol_scheme">fb131179306307792</string>
+    <string name="facebook_client_token">54d397afe0f59f9256749de46573c307</string>
 
 </resource>

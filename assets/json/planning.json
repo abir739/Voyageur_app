@@ -1,0 +1,93 @@
+
+ {
+  "name": "Trip to Paris",
+  "startDate": "2023-05-10",
+  "endDate": "2023-05-20",
+  "days": [
+    {
+      "date": "2023-05-10",
+      "activities": [
+        {
+          "duration": "09:00-12:00",
+          "type": "Visit",
+          "icon": "icons/visit.png",
+          "name": "Eiffel Tower",
+          "comments": [],
+          "address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France",
+          "description": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower."
+        },
+        {
+          "duration": "12:00-13:00",
+          "type": "Restaurant",
+          "icon": "icons/restaurant.png",
+          "name": "Chez Julien",
+          "comments": [],
+          "address": "1 Rue du Pont Louis-Philippe, 75004 Paris, France",
+          "description": "Chez Julien is a French restaurant located in the Marais district of Paris. It serves traditional French cuisine in a charming and elegant atmosphere."
+        },
+        {
+          "duration": "13:00-15:00",
+          "type": "Visit",
+          "icon": "icons/visit.png",
+          "name": "Louvre Museum",
+          "comments": [],
+          "address": "Rue de Rivoli, 75001 Paris, France",
+          "description": "The Louvre Museum is the world's largest art museum and a historic monument in Paris. It is located in the Louvre Palace, originally built as a fortress in the late 12th century."
+        },
+        {
+          "duration": "15:00-18:00",
+          "type": "Visit",
+          "icon": "icons/visit.png",
+          "name": "Notre-Dame Cathedral",
+          "comments": [],
+          "address": "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, France",
+          "description": "Notre-Dame Cathedral is a medieval Catholic cathedral in the fourth arrondissement of Paris. The cathedral is widely considered to be one of the finest examples of French Gothic architecture."
+        }
+      ]
+    },
+    {
+      "date": "2023-05-11",
+      "activities": [
+        {
+          "duration": "09:00-12:00",
+          "type": "Visit",
+          "icon": "icons/visit.png",
+          "name": "Palace of Versailles",
+          "comments": [],
+          "address": "Place d'Armes, 78000 Versailles, France",
+          "description": "The Palace of Versailles is a royal château in Versailles, France. It was the residence of the Kings of France from Louis XIV to Louis XVI. The palace is now a UNESCO World Heritage Site."
+        },
+        {
+          "duration": "12:00-13:00",
+          "type": "Restaurant",
+          "icon": "icons/restaurant.png",
+          "name": "Le Jules Verne",
+          "comments": [],
+          "address": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France",
+          "description":      "Le Jules Verne is a Michelin-starred restaurant located on the second floor of the Eiffel Tower. It offers panoramic views of Paris and serves contemporary French cuisine."
+    },
+    {
+      "duration": "14:00-17:00",
+      "type": "Visit",
+      "icon": "icons/visit.png",
+      "name": "Sainte-Chapelle",
+      "comments": [],
+      "address": "8 Boulevard du Palais, 75001 Paris, France",
+      "description": "Sainte-Chapelle is a Gothic chapel on the Île de la Cité in the heart of Paris, France. It is renowned for its stunning stained-glass windows and impressive architecture."
+    },
+    {
+      "duration": "17:00-19:00",
+      "type": "Visit",
+      "icon": "icons/visit.png",
+      "name": "Montmartre",
+      "comments": [],
+      "address": "Montmartre, 75018 Paris, France",
+      "description": "Montmartre is a historic hill in the north of Paris, famous for its artistic heritage and stunning views over the city. It is home to the Sacré-Cœur Basilica, the Moulin Rouge, and many charming cafes and restaurants."
+    }
+  ]
+    }
+]
+ }
+
+
+

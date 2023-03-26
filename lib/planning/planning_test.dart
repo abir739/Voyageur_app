@@ -1,152 +1,173 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:intl/intl.dart';
-//import 'package:voyageur_app/notification/notification.dart';
-import 'package:voyageur_app/notification/notification_test.dart';
-import 'package:voyageur_app/activites/hotels.dart';
 
-import '../activites/visites.dart';
-
-// the description of an activity
-
-class Plan {
-  final String name;
-  final DateTime startDate;
-  final DateTime endDate;
-  final List<Day> days;
-
-  Plan(
-      {required this.name,
-      required this.startDate,
-      required this.endDate,
-      required this.days});
+class PlanningScreen extends StatefulWidget {
+  @override
+  _PlanningScreenState createState() => _PlanningScreenState();
 }
 
-class Day {
-  final DateTime date;
-  final List<Activity> activities;
+class _PlanningScreenState extends State<PlanningScreen> {
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now().add(Duration(days: 90));
+  DateTime currentDate = DateTime.now();
 
-  Day({required this.date, required this.activities});
-}
+  List<Box> boxes = [];
 
-class Activity {
-  final String duration;
-  final String type;
-  final String icon;
-  final String name;
-  final String address;
+  void generateBoxes() {
+    Random random = Random();
+    int numBoxes = random.nextInt(10) + 1;
+    boxes.clear();
+    for (int i = 0; i < numBoxes; i++) {
+      Color color = Color.fromARGB(
+          255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+      String content = "Box $i";
+      boxes.add(Box(color, content));
+    }
+  }
 
-  Activity(
-      {required this.duration,
-      required this.type,
-      required this.icon,
-      required this.name,
-      required this.address});
-}
-
-class PlanScreen extends StatelessWidget {
-  final Plan plan;
-
-  const PlanScreen({Key? key, required this.plan}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+    generateBoxes();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final start = DateFormat("MMM dd, yyyy").format(startDate);
+    final end = DateFormat("MMM dd, yyyy").format(endDate);
     return Scaffold(
       appBar: AppBar(
-        title: Text(plan.name),
+        title: Text("Planning Screen"),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildPlanInfo(),
-          _buildDays(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "My Plan",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  '$start ~ $end',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Container(
+            height: 40.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: (endDate.difference(startDate).inDays + 1),
+              itemBuilder: (BuildContext context, int index) {
+                DateTime day = startDate.add(Duration(days: index));
+                String dayOfWeek = "";
+                switch (day.weekday) {
+                  case 1:
+                    dayOfWeek = "MON";
+                    break;
+                  case 2:
+                    dayOfWeek = "TUE";
+                    break;
+                  case 3:
+                    dayOfWeek = "WED";
+                    break;
+                  case 4:
+                    dayOfWeek = "THU";
+                    break;
+                  case 5:
+                    dayOfWeek = "FRI";
+                    break;
+                  case 6:
+                    dayOfWeek = "SAT";
+                    break;
+                  case 7:
+                    dayOfWeek = "SUN";
+                    break;
+                }
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      currentDate = day;
+                      generateBoxes();
+                    });
+                  },
+                  child: Container(
+                    width: 80.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: (day == currentDate)
+                            ? Colors.blue
+                            : Colors.grey[300]!,
+                        width: 1.0,
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$dayOfWeek ${day.day}",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          color:
+                              (day == currentDate) ? Colors.blue : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              child: ListView.builder(
+                itemCount: boxes.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: boxes[index].color.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Text(
+                      boxes[index].content,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildPlanInfo() {
-    return Column(
-      children: [
-        Text(
-          '${DateFormat('MMM d, y').format(plan.startDate)} - ${DateFormat('MMM d, y').format(plan.endDate)}',
-          style: TextStyle(fontSize: 18),
-        ),
-        SizedBox(height: 8),
-      ],
-    );
-  }
+class Box {
+  final Color color;
+  final String content;
 
-  Widget _buildDays() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: plan.days.length,
-        itemBuilder: (BuildContext context, int index) {
-          final day = plan.days[index];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  DateFormat('EEE, MMM d').format(day.date),
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: _buildDayActivities(day.activities),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
-
-  List<Widget> _buildDayActivities(List<Activity> activities) {
-    return activities.map((activity) {
-      return GestureDetector(
-        onTap: () {
-// Navigate to the activity detail screen
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey.shade300,
-                    ),
-                    child: Center(
-                      child: Text(activity.duration),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Image.asset(activity.icon, width: 30, height: 30),
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(
-                activity.type,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 4),
-              Text(activity.name),
-            ],
-          ),
-        ),
-      );
-    }).toList();
-  }
+  Box(this.color, this.content);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voyageur_app/notification/notification.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HotelPage extends StatelessWidget {
   final String image;
@@ -39,8 +40,8 @@ class HotelPage extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/hotel.png',
+                          child: SvgPicture.asset(
+                            'assets/images/Logo.svg',
                             width: 40.0,
                             height: 40.0,
                             fit: BoxFit.cover,

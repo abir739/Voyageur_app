@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:voyageur_app/provider/internet_provider.dart';
 import 'package:voyageur_app/provider/sign_in_provider.dart';
 import 'package:voyageur_app/screens/home_screen.dart';
@@ -45,10 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image(
-                    image: AssetImage(Config.app_icon),
-                    width: 170,
-                    height: 150,
+                  SvgPicture.asset(
+                    'assets/images/Logo.svg',
+                    width: 170, // replace with your desired width
+                    height: 150, // replace with your desired height
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(

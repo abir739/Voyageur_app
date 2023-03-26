@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:voyageur_app/notification/notification.dart';
 import 'package:voyageur_app/activites/hotels.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // the description of an activity
 class Activity {
@@ -38,31 +41,31 @@ class _PlanningScreenState extends State<PlanningScreen> {
   final List<Activity> activities = [
     Activity(
       name: "Vols",
-      time: "2:00 PM",
-      logoPath: 'assets/images/avion2.png',
+      time: "14:00-14:45",
+      logoPath: 'assets/images/55.jpg',
       symbolName: 'Aéroport de Tunis',
-      photoPath: 'assets/logos/logo.png',
+      photoPath: 'assets/images/55.png',
       place: 'ASL Airlines France',
     ),
     Activity(
       name: "Hotles",
-      time: "10:00 AM",
-      logoPath: 'assets/images/hotel.png',
+      time: "16:00-16:30",
+      logoPath: 'assets/images/22.jpg',
       symbolName: 'Hotel Carlton',
-      photoPath: 'assets/logos/logo.png',
+      photoPath: 'assets/images/22.jpg',
       place: 'Av.Habib Bourguiba',
     ),
     Activity(
       name: "Restaurants",
-      time: "2:00 PM",
-      logoPath: 'assets/images/food.png',
+      time: "19:00",
+      logoPath: 'assets/images/44.png',
       symbolName: 'Aromate Restaurant',
-      photoPath: 'assets/logos/logo.png',
+      photoPath: 'assets/images/33.png',
       place: 'Douze 4260 Tunisie',
     ),
     Activity(
       name: "Visites",
-      time: "6:00 PM",
+      time: "17:00-18:00",
       logoPath: 'assets/images/maps.png',
       symbolName: 'lle de Djerba',
       photoPath: 'assets/logos/logo.png',
@@ -70,7 +73,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
     ),
     Activity(
       name: "Activities",
-      time: "8:00 PM",
+      time: "10:00-12:30",
       logoPath: 'assets/images/maps.png',
       symbolName: 'lle de Djerba',
       photoPath: 'assets/logos/logo.png',
@@ -99,16 +102,17 @@ class _PlanningScreenState extends State<PlanningScreen> {
       for (int j = 0; j < activities.length; j++) {
         Activity index = activities[j];
         // Generate a random color for each box
-        Color boxColor = Colors
-            .primaries[DateTime.now().millisecond % Colors.primaries.length];
+        Random random = Random();
+        Color boxColor = Color.fromARGB(
+            255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
         // Generate a random height for each box between 50 and 150
         double boxHeight = 270.0 /*+ DateTime.now().millisecond % 100*/;
         // Build the box widget
         Widget box = Container(
           height: boxHeight,
           decoration: BoxDecoration(
-            color: boxColor,
-            borderRadius: BorderRadius.circular(10.0),
+            color: boxColor.withOpacity(0.6),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(10),
@@ -121,7 +125,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
                 children: [
                   SizedBox(height: 10),
                   Text(
-                    "Time: ${index.time}",
+                    "${index.time}",
                     style: TextStyle(fontSize: 18),
                   ),
                   Row(
@@ -133,38 +137,38 @@ class _PlanningScreenState extends State<PlanningScreen> {
                           index.logoPath,
                           width: 40,
                           height: 40,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                       SizedBox(width: 16, height: 46),
                       Text(
                         index.name,
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 17, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 26),
+                      SizedBox(height: 20),
                       ClipOval(
                         child: Image.asset(
                           index.logoPath,
                           width: 40,
                           height: 40,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                       SizedBox(width: 8, height: 80),
                       Text(
                         index.symbolName,
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
+                            fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  SizedBox(height: 36.0),
                   Divider(
                     color: Colors.black,
                     thickness: 2.0,
@@ -173,10 +177,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        child: Image.asset(
-                          'assets/images/flag3.png',
-                          width: 40,
-                          height: 40,
+                        child: SvgPicture.asset(
+                          'assets/images/place.svg',
+                          width: 13,
+                          height: 13,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -211,7 +215,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 10.0),
                     Divider(
                       color: Colors.black,
                       thickness: 2.0,
@@ -244,6 +248,30 @@ class _PlanningScreenState extends State<PlanningScreen> {
   }
 
   Widget _buildDay(DateTime day) {
+    String dayOfWeek = "";
+    switch (day.weekday) {
+      case 1:
+        dayOfWeek = "MON";
+        break;
+      case 2:
+        dayOfWeek = "TUE";
+        break;
+      case 3:
+        dayOfWeek = "WED";
+        break;
+      case 4:
+        dayOfWeek = "THU";
+        break;
+      case 5:
+        dayOfWeek = "FRI";
+        break;
+      case 6:
+        dayOfWeek = "SAT";
+        break;
+      case 7:
+        dayOfWeek = "SUN";
+        break;
+    }
     bool isSelected = _currentIndex == _days.indexOf(day);
     return GestureDetector(
       onTap: () {
@@ -255,17 +283,17 @@ class _PlanningScreenState extends State<PlanningScreen> {
         margin: EdgeInsets.symmetric(horizontal: 5.0),
         decoration: BoxDecoration(
           color: isSelected
-              ? Color.fromARGB(255, 154, 58, 199)
+              ? Color.fromARGB(255, 241, 210, 231)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         child: Center(
           child: Text(
-            DateFormat('d').format(day),
+            "$dayOfWeek ${day.day}",
             style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.white : Colors.black,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w500,
+              color: (day == _currentIndex) ? Colors.blue : Colors.black,
             ),
           ),
         ),
@@ -286,6 +314,12 @@ class _PlanningScreenState extends State<PlanningScreen> {
     );
   }
 
+  List<String> boxDescriptions = [
+    'Box 1 description',
+    'Box 2 description',
+    'Box 3 description'
+  ];
+
   Widget _buildPlanContent() {
     DateTime currentDay = _days[_currentIndex];
     // Generate a list of boxes with different colors and contents
@@ -295,21 +329,25 @@ class _PlanningScreenState extends State<PlanningScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Content for ${DateFormat('MMM d, y').format(currentDay)}',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           SizedBox(height: 10.0),
           Expanded(
             child: ListView.builder(
               itemCount: boxes.length,
               itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: boxes[index],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BoxDescriptionPage(
+                            description: boxDescriptions[index]),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                    child: boxes[index],
+                  ),
                 );
               },
             ),
@@ -321,15 +359,17 @@ class _PlanningScreenState extends State<PlanningScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final start = DateFormat("MMM dd, yyyy").format(_startDate);
+    final end = DateFormat("MMM dd, yyyy").format(_endDate);
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          'assets/logos/logo.png',
+        title: SvgPicture.asset(
+          'assets/images/Logo.svg',
           fit: BoxFit.cover,
           height: 36.0,
         ),
         backgroundColor: Color.fromARGB(
-            255, 141, 135, 248), // Set the background color to #4F46E5
+            255, 207, 207, 219), // Set the background color to #4F46E5
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications),
@@ -356,9 +396,9 @@ class _PlanningScreenState extends State<PlanningScreen> {
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
-              'Plan n° 1',
+              'Planning 1',
               style: TextStyle(
-                fontSize: 30.0,
+                fontSize: 27.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -368,7 +408,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
             child: Text(
               '${DateFormat('MMM d, y').format(_startDate)} ~ ${DateFormat('MMM d, y').format(_endDate)}',
               style: TextStyle(
-                fontSize: 18.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -476,4 +516,22 @@ void _showCommentDialog(BuildContext context, Activity activity) {
       );
     },
   );
+}
+
+class BoxDescriptionPage extends StatelessWidget {
+  final String description;
+
+  BoxDescriptionPage({required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Box Description'),
+      ),
+      body: Center(
+        child: Text(description),
+      ),
+    );
+  }
 }

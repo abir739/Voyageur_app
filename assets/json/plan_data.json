@@ -1,0 +1,20 @@
+{
+    "title": "My Plan",
+    "startDate": "2023-07-25T00:00:00.000Z",
+    "endDate": "2023-10-25T00:00:00.000Z",
+    "days": [
+      {
+        "date": "2023-07-25T00:00:00.000Z",
+        "activities": [
+          {"activity": "Activity 1", "time": "2023-07-25T10:00:00.000Z"},
+          {"activity": "Activity 2", "time": "2023-07-25T14:00:00.000Z"}
+        ]
+      },
+      {
+        "date": "2023-07-26T00:00:00.000Z",
+        "activities": [
+          {"activity": "Activity 3", "time": "2023-07-26T09:00:00.000Z"}
+        ]
+    }
+    ]
+}

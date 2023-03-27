@@ -6,6 +6,8 @@ import 'package:voyageur_app/notification/notification.dart';
 import 'package:voyageur_app/activites/hotels.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../activites/visites.dart';
+
 // the description of an activity
 class Activity {
   String name;
@@ -15,15 +17,19 @@ class Activity {
   String photoPath;
   String place;
   String comment;
+  String description;
+  String price;
 
   Activity(
       {required this.name,
       required this.time,
+      required this.price,
       required this.logoPath,
       required this.symbolName,
       required this.photoPath,
       required this.place,
-      this.comment = ""});
+      this.comment = "",
+      required this.description});
 }
 
 class PlanningScreen extends StatefulWidget {
@@ -42,42 +48,61 @@ class _PlanningScreenState extends State<PlanningScreen> {
     Activity(
       name: "Vols",
       time: "14:00-14:45",
+      price: "0€",
       logoPath: 'assets/images/55.jpg',
       symbolName: 'Aéroport de Tunis',
-      photoPath: 'assets/images/55.png',
-      place: 'ASL Airlines France',
+      photoPath:
+          'https://destinationsmed.com/wp-content/uploads/2022/08/TUN_1-984x554-1.jpg',
+      place: 'Aéroport tunis carthage',
+      description:
+          'cette aéroport porte le nom de la cité historique de Carthage qui est située à cette aéroport. Lors de sa mise en exploitation, aérodrome est connu sous le nom de Tunis-El Aouina.',
     ),
     Activity(
       name: "Hotles",
-      time: "16:00-16:30",
+      time: "16:00-16:50",
+      price: "0€",
       logoPath: 'assets/images/22.jpg',
-      symbolName: 'Hotel Carlton',
-      photoPath: 'assets/images/22.jpg',
-      place: 'Av.Habib Bourguiba',
+      symbolName: 'Royal Azur Hotel Thalassa',
+      photoPath:
+          'https://fwk.resabo.com/cr.fwk/images/hotels/Hotel-8905-20230102-095053.jpg',
+      place: 'Hammamet, Tunisie Station touristique',
+      description:
+          'L’Hôtel Royal Azur Thalassa propose une de?couverte Tunisienne à travers une déambulation dans ses espaces à caractère culturel profond.',
     ),
     Activity(
       name: "Restaurants",
       time: "19:00",
+      price: "0€",
       logoPath: 'assets/images/44.png',
-      symbolName: 'Aromate Restaurant',
-      photoPath: 'assets/images/33.png',
-      place: 'Douze 4260 Tunisie',
+      symbolName: 'Restaurant Dar El Jeld',
+      photoPath:
+          'https://www.sejours-tunisie.com/wp-content/uploads/2019/02/meilleurs-restaurants-tunis.jpg',
+      place: 'Tunisie, Tunis',
+      description:
+          'Dar El Jeld : avec sa localisation atypique au milieu du souk de Tunis, cette demeure exceptionnelle reconvertit en restaurant chic et raffiné propose divers plats orientaux et tunisiens d’exception : généreux et goûteux, vous serez agréablement séduit !',
     ),
     Activity(
       name: "Visites",
       time: "17:00-18:00",
+      price: "28,51€",
       logoPath: 'assets/images/maps.png',
-      symbolName: 'lle de Djerba',
-      photoPath: 'assets/logos/logo.png',
-      place: 'Par Djerba Explore',
+      symbolName: 'Sidi Bou Said',
+      photoPath:
+          "https://travelfree.info/wp-content/uploads/2020/06/tunisia-2425441_1280-e1593516163383.jpg",
+      place: "Tunisia-tunis",
+      description:
+          "You could be forgiven for thinking that you’d made the hop across the Med to the islands of the Greek Aegean as you enter the vibrant interior of Sidi Bou Said town, sat just 20 kilometers from bustling Tunis.Yep, the sky-blue and whitewashed color scheme here is more than reminiscent of towns in Santorini and Mykonos.However, this one’s interesting hues were actually started by the French musicologist Rodolphe d’Erlanger.",
     ),
     Activity(
       name: "Activities",
       time: "10:00-12:30",
+      price: "48,51€",
       logoPath: 'assets/images/maps.png',
       symbolName: 'lle de Djerba',
-      photoPath: 'assets/logos/logo.png',
+      photoPath:
+          'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/cd/1b/31/caption.jpg?w=500&h=400&s=1',
       place: 'Par Djerba Explore',
+      description: 'Ile de Djerba: excursion : une heure et demie en quad',
     ),
   ];
 
@@ -106,138 +131,148 @@ class _PlanningScreenState extends State<PlanningScreen> {
         Color boxColor = Color.fromARGB(
             255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
         // Generate a random height for each box between 50 and 150
-        double boxHeight = 270.0 /*+ DateTime.now().millisecond % 100*/;
+        double boxHeight = 240.0 /*+ DateTime.now().millisecond % 100*/;
+
+//Box's Detail
+
         // Build the box widget
-        Widget box = Container(
-          height: boxHeight,
-          decoration: BoxDecoration(
-            color: boxColor.withOpacity(0.6),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text(
-                    "${index.time}",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 14),
-                      ClipOval(
-                        child: Image.asset(
-                          index.logoPath,
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      SizedBox(width: 16, height: 46),
-                      Text(
-                        index.name,
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20),
-                      ClipOval(
-                        child: Image.asset(
-                          index.logoPath,
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      SizedBox(width: 8, height: 80),
-                      Text(
-                        index.symbolName,
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 36.0),
-                  Divider(
-                    color: Colors.black,
-                    thickness: 2.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: SvgPicture.asset(
-                          'assets/images/place.svg',
-                          width: 13,
-                          height: 13,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      SizedBox(height: 26, width: 10),
-                      Text(
-                        index.place,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 8, 8, 8),
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+        Widget box = GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BoxDescriptionPage(
+                  activity: index,
+                ),
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            );
+          },
+          child: Container(
+            height: boxHeight,
+            decoration: BoxDecoration(
+              color: boxColor.withOpacity(0.6),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFFD1D5DB),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          _showCommentDialog(context, index);
-                        },
-                        child: Text(
-                          "Add Comment",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10.0),
-                    Divider(
-                      color: Colors.black,
-                      thickness: 2.0,
-                    ),
                     SizedBox(height: 8),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        index.comment,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
-                      ),
+                    Text(
+                      "${index.time}",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(height: 14),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 14),
+                        ClipOval(
+                          child: Image.asset(
+                            index.logoPath,
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        SizedBox(width: 8, height: 16),
+                        Text(
+                          index.name,
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        ClipOval(
+                          child: Image.network(
+                            index.photoPath,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(width: 6, height: 80),
+                        Text(
+                          index.symbolName,
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 14),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: SvgPicture.asset(
+                            'assets/images/place.svg',
+                            width: 13,
+                            height: 13,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(height: 26, width: 10),
+                        Text(
+                          index.place,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 8, 8, 8),
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFD1D5DB),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            _showCommentDialog(context, index);
+                          },
+                          child: Text(
+                            "Add Comment",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          index.comment,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
         // Add the box widget to the list of boxes
@@ -314,11 +349,11 @@ class _PlanningScreenState extends State<PlanningScreen> {
     );
   }
 
-  List<String> boxDescriptions = [
+  /*List<String> boxDescriptions = [
     'Box 1 description',
     'Box 2 description',
     'Box 3 description'
-  ];
+  ];*/
 
   Widget _buildPlanContent() {
     DateTime currentDay = _days[_currentIndex];
@@ -334,7 +369,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
             child: ListView.builder(
               itemCount: boxes.length,
               itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
+                /*return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
@@ -343,11 +378,12 @@ class _PlanningScreenState extends State<PlanningScreen> {
                             description: boxDescriptions[index]),
                       ),
                     );
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0),
-                    child: boxes[index],
-                  ),
+                  },*/
+                // child: Padding(
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.0),
+                  child: boxes[index],
+                  //),
                 );
               },
             ),
@@ -476,7 +512,10 @@ void _showMenu(BuildContext context) {
               title: const Text('Activié/Visite'),
               onTap: () {
                 // Navigate to activites screen when pressed
-                Navigator.pushNamed(context, '/Visite');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VisitesScreen()),
+                );
               },
             ),
           ],
@@ -518,19 +557,136 @@ void _showCommentDialog(BuildContext context, Activity activity) {
   );
 }
 
-class BoxDescriptionPage extends StatelessWidget {
-  final String description;
+List<String> boxDescriptions = [
+  'Box 1 description',
+  'Box 2 description',
+  'Box 3 description'
+];
 
-  BoxDescriptionPage({required this.description});
+class BoxDescriptionPage extends StatelessWidget {
+  final Activity activity;
+
+  BoxDescriptionPage({required this.activity});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Box Description'),
+        title: Text(
+          activity.name,
+          style: TextStyle(
+            color: Color.fromARGB(255, 38, 6, 39),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 207, 207, 219),
       ),
-      body: Center(
-        child: Text(description),
+      body: Container(
+        margin: EdgeInsets.all(20),
+
+        //child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.network(activity.photoPath),
+            SizedBox(height: 16),
+            /* Text(place.time),*/
+
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    activity.time,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 39, 41, 176),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 146),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    'Price : ${activity.price}',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 39, 41, 176),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            Text(
+              activity.symbolName,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            /*SizedBox(height: 8),
+          Text(place.address),*/
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  child: SvgPicture.asset(
+                    'assets/images/place.svg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(height: 8, width: 6),
+                Text(
+                  activity.place,
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 8, 8, 8),
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.0),
+            Divider(
+              color: Color.fromARGB(255, 189, 184, 184),
+              thickness: 2.0,
+            ),
+            SizedBox(height: 16),
+            Text(
+              "Description",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            Text(activity.description),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Accept", style: TextStyle(color: Colors.white)),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromARGB(255, 252, 56, 121)),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Decline", style: TextStyle(color: Colors.black)),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromARGB(255, 214, 208, 208)),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        // ),
       ),
     );
   }

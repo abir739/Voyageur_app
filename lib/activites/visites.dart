@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_svg/svg.dart';
 import 'package:voyageur_app/models/place_model.dart';
 
 import 'package:flutter/material.dart';
@@ -54,8 +55,8 @@ class PlaceCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                child: Image.asset(
-                  'assets/images/Icon.png',
+                child: SvgPicture.asset(
+                  'assets/images/place.svg',
                   fit: BoxFit.cover,
                 ),
               ),

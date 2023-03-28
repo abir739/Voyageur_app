@@ -33,9 +33,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notifications'),
+        title: Text(
+          'Notifications',
+          style: TextStyle(
+            color: Color.fromARGB(255, 38, 6, 39),
+          ),
+        ),
         backgroundColor: Color.fromARGB(
-            255, 122, 115, 241), // Set the background color to #4F46E5
+            255, 207, 207, 219), // Set the background color to #4F46E5
 
         actions: <Widget>[
           IconButton(

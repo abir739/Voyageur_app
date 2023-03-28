@@ -21,6 +21,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.0.0-277.0.dev <4.0.0'
 
+
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -51,6 +52,13 @@ dependencies:
   twitter_login: ^4.3.1
   flutter_svg: ^2.0.4
   json_annotation: ^4.8.0
+  barcode_scan2: ^4.2.4
+  barcode_scanner: ^3.2.3
+  qr_code_scanner: ^1.0.1
+  qr_mobile_vision: ^4.0.1
+  permission_handler: ^10.2.0
+  
+
 
 
 dev_dependencies:

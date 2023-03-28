@@ -58,18 +58,6 @@ class _PlanningScreenState extends State<PlanningScreen> {
           'cette aéroport porte le nom de la cité historique de Carthage qui est située à cette aéroport. Lors de sa mise en exploitation, aérodrome est connu sous le nom de Tunis-El Aouina.',
     ),
     Activity(
-      name: "Hotles",
-      time: "16:00-16:50",
-      price: "0€",
-      logoPath: 'assets/images/22.jpg',
-      symbolName: 'Royal Azur Hotel Thalassa',
-      photoPath:
-          'https://fwk.resabo.com/cr.fwk/images/hotels/Hotel-8905-20230102-095053.jpg',
-      place: 'Hammamet, Tunisie Station touristique',
-      description:
-          'L’Hôtel Royal Azur Thalassa propose une de?couverte Tunisienne à travers une déambulation dans ses espaces à caractère culturel profond.',
-    ),
-    Activity(
       name: "Restaurants",
       time: "19:00",
       price: "0€",
@@ -80,6 +68,18 @@ class _PlanningScreenState extends State<PlanningScreen> {
       place: 'Tunisie, Tunis',
       description:
           'Dar El Jeld : avec sa localisation atypique au milieu du souk de Tunis, cette demeure exceptionnelle reconvertit en restaurant chic et raffiné propose divers plats orientaux et tunisiens d’exception : généreux et goûteux, vous serez agréablement séduit !',
+    ),
+    Activity(
+      name: "Hotles",
+      time: "16:00-16:50",
+      price: "0€",
+      logoPath: 'assets/images/22.jpg',
+      symbolName: 'Royal Azur Hotel Thalassa',
+      photoPath:
+          'https://fwk.resabo.com/cr.fwk/images/hotels/Hotel-8905-20230102-095053.jpg',
+      place: 'Hammamet, Tunisie Station touristique',
+      description:
+          'L’Hôtel Royal Azur Thalassa propose une de?couverte Tunisienne à travers une déambulation dans ses espaces à caractère culturel profond.',
     ),
     Activity(
       name: "Visites",

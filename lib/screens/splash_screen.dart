@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_svg/svg.dart';
 import 'package:voyageur_app/provider/sign_in_provider.dart';
 import 'package:voyageur_app/screens/home_screen.dart';
 import 'package:voyageur_app/screens/login_screen.dart';
@@ -34,11 +35,13 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-            child: Image(
-          image: AssetImage(Config.app_icon),
-          width: 150,
-          height: 150,
-        )),
+          child: SvgPicture.asset(
+            'assets/images/Logo.svg',
+            width: 150, // replace with your desired width
+            height: 150, // replace with your desired height
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

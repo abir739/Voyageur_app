@@ -130,9 +130,14 @@ class _VisitesScreenState extends State<VisitesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Visite/Activity'),
+        title: Text(
+          'Visite/Activity',
+          style: TextStyle(
+            color: Color.fromARGB(255, 38, 6, 39),
+          ),
+        ),
         backgroundColor: Color.fromARGB(
-            255, 122, 115, 241), // Set the background color to #4F46E5
+            255, 207, 207, 219), // Set the background color to #4F46E5
 
         actions: <Widget>[
           IconButton(

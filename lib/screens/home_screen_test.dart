@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(
+            /*const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Text("Start your trip !",
                     style: TextStyle(
                       color: Colors.white,
-                    ))),
+                    ))),*/
             const SizedBox(
               height: 20,
             ),

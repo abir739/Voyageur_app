@@ -57,6 +57,12 @@ dependencies:
   qr_code_scanner: ^1.0.1
   qr_mobile_vision: ^4.0.1
   permission_handler: ^10.2.0
+  flutter_animated_icons: ^1.0.1
+  flutter_local_notifications: ^8.2.0
+  socket_io_client_flutter: ^1.0.2
+  flutter_secure_storage: ^8.0.0
+  sidebarx: ^0.15.0
+  get: ^4.6.5
   
 
 

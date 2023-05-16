@@ -4,7 +4,6 @@ import 'package:voyageur_app/provider/sign_in_provider.dart';
 //import 'package:voyageur_app/screens/home_screen.dart';
 import 'package:voyageur_app/screens/home_screen_test.dart';
 import 'package:voyageur_app/screens/phoneauth_screen.dart';
-import 'package:voyageur_app/utils/config.dart';
 import 'package:voyageur_app/utils/next_screen.dart';
 import 'package:voyageur_app/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Color.fromARGB(255, 250, 244, 244),
+      backgroundColor: const Color.fromARGB(255, 250, 244, 244),
       body: SafeArea(
           child: Padding(
         padding:
@@ -85,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.red,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       Icon(
                         FontAwesomeIcons.google,
                         size: 20,
@@ -117,8 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.blue,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       Icon(
                         FontAwesomeIcons.facebook,
                         size: 20,
@@ -150,8 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.lightBlue,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       Icon(
                         FontAwesomeIcons.twitter,
                         size: 20,
@@ -184,8 +183,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 0,
                   borderRadius: 25,
                   color: Colors.black,
-                  child: Wrap(
-                    children: const [
+                  child: const Wrap(
+                    children: [
                       Icon(
                         FontAwesomeIcons.phone,
                         size: 20,

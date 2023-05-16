@@ -10,8 +10,8 @@ class HotelPage extends StatelessWidget {
   final String address;
   final String comment;
 
-  HotelPage(
-      {required this.image,
+  const HotelPage(
+      {super.key, required this.image,
       required this.time,
       required this.fullName,
       required this.rating,
@@ -20,13 +20,13 @@ class HotelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,8 +47,8 @@ class HotelPage extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: 16.0),
-                        Text(
+                        const SizedBox(width: 16.0),
+                        const Text(
                           'Hôtels',
                           style: TextStyle(
                             fontSize: 18.0,
@@ -70,52 +70,52 @@ class HotelPage extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                         width: 10,
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 163, 97, 175)
+                          color: const Color.fromARGB(255, 163, 97, 175)
                               .withOpacity(0.2),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
                           time,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.purple,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       fullName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.yellow,
                           size: 20.0,
                         ),
-                        SizedBox(width: 4.0),
+                        const SizedBox(width: 4.0),
                         Text(
                           '$rating / 5.0',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -123,34 +123,34 @@ class HotelPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 8, width: 20),
+                      const SizedBox(height: 8, width: 20),
                       Container(
                         child: Image.asset(
                           'assets/images/Icon.png',
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(height: 8, width: 8),
+                      const SizedBox(height: 8, width: 8),
                       Text(
                         address,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromARGB(255, 8, 8, 8),
                           fontStyle: FontStyle.italic,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
-                  Divider(
+                  const SizedBox(height: 16.0),
+                  const Divider(
                     color: Color.fromARGB(255, 189, 184, 184),
                     thickness: 2.0,
                   ),
-                  SizedBox(height: 126.0),
-                  CommentSection(),
+                  const SizedBox(height: 126.0),
+                  const CommentSection(),
                 ],
               ),
             ),
@@ -164,7 +164,7 @@ class HotelPage extends StatelessWidget {
 class HotelListScreen extends StatelessWidget {
   final List<Map<String, dynamic>> hotels;
 
-  HotelListScreen({required this.hotels});
+  const HotelListScreen({super.key, required this.hotels});
 
   @override
   Widget build(BuildContext context) {
@@ -175,21 +175,21 @@ class HotelListScreen extends StatelessWidget {
           fit: BoxFit.cover,
           height: 36.0,
         ),
-        backgroundColor: Color.fromARGB(
+        backgroundColor: const Color.fromARGB(
             255, 141, 135, 248), // Set the background color to #4F46E5
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Navigate to notifications screen when button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotificationsScreen()),
+                MaterialPageRoute(builder: (context) => const NotificationsScreen()),
               );
             },
           ),
           IconButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             onPressed: () {
               // Show menu options when button is pressed
               _showMenu(context);
@@ -229,7 +229,7 @@ void _showMenu(BuildContext context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HotelListScreen(
+                      builder: (context) => const HotelListScreen(
                             hotels: [
                               {
                                 'image': 'assets/images/hotel-img.png',
@@ -275,6 +275,8 @@ void _showMenu(BuildContext context) {
 }
 
 class CommentSection extends StatefulWidget {
+  const CommentSection({super.key});
+
   @override
   _CommentSectionState createState() => _CommentSectionState();
 }
@@ -302,20 +304,20 @@ class _CommentSectionState extends State<CommentSection> {
       children: [
         Text(
           '   Comments',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: comments.length,
           itemBuilder: (context, index) {
             final comment = comments[index];
             return Container(
               height: 163,
               width: 352,
-              margin: EdgeInsets.only(top: 24),
-              padding: EdgeInsets.all(16),
+              margin: const EdgeInsets.only(top: 24),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
                 color: Colors.white,
@@ -323,7 +325,7 @@ class _CommentSectionState extends State<CommentSection> {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.3),
                     blurRadius: 6,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -331,25 +333,25 @@ class _CommentSectionState extends State<CommentSection> {
             );
           },
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         Row(
           children: [
             Expanded(
               child: TextField(
                 controller: commentController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: '     Enter a comment',
                 ),
               ),
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             ElevatedButton(
               onPressed: addComment,
-              child: Text('Add Comment'),
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFF4F46E5)),
+                    MaterialStateProperty.all<Color>(const Color(0xFF4F46E5)),
               ),
+              child: const Text('Add Comment'),
             ),
           ],
         ),

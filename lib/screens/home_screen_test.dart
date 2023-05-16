@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 38, 6, 39),
                               ),
                             ),
-                            backgroundColor: Color.fromARGB(255, 207, 207, 219),
+                            backgroundColor: const Color.fromARGB(255, 207, 207, 219),
                           ),
                           body: QRView(
                             key: qrKey,
@@ -148,15 +148,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
 
                   if (qrResult != null) {
-                    nextScreenReplace(context, PlanningScreen());
+                    nextScreenReplace(context, const PlanningScreen());
                   }
                 } else {
                   // Permission not granted, show error message
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text(
                           'Camera permission is required to scan QR codes'),
-                      duration: const Duration(seconds: 3),
+                      duration: Duration(seconds: 3),
                     ),
                   );
                 }

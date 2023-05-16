@@ -10,7 +10,7 @@ Widget _buildDayActivityList(String day) {
     activityWidgets.add(
       ListTile(
         title: Text(activity),
-        subtitle: Text(
+        subtitle: const Text(
             '10:00 AM - 11:00 AM'), // Replace with the time of the activity
       ),
     );

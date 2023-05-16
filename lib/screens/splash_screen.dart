@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:voyageur_app/provider/sign_in_provider.dart';
 import 'package:voyageur_app/screens/home_screen.dart';
 import 'package:voyageur_app/screens/login_screen.dart';
-import 'package:voyageur_app/utils/config.dart';
 import 'package:voyageur_app/utils/next_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

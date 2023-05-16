@@ -33,14 +33,16 @@ class Activity {
 }
 
 class PlanningScreen extends StatefulWidget {
+  const PlanningScreen({super.key});
+
   @override
   _PlanningScreenState createState() => _PlanningScreenState();
 }
 
 class _PlanningScreenState extends State<PlanningScreen> {
-  DateTime _startDate = DateTime.now().subtract(Duration(days: 3));
-  DateTime _endDate = DateTime.now().add(Duration(days: 20));
-  List<DateTime> _days = [];
+  final DateTime _startDate = DateTime.now().subtract(const Duration(days: 3));
+  final DateTime _endDate = DateTime.now().add(const Duration(days: 20));
+  final List<DateTime> _days = [];
   int _currentIndex = 0;
 
 // exemple for list of activiies to test the activity list view
@@ -153,8 +155,8 @@ class _PlanningScreenState extends State<PlanningScreen> {
               color: boxColor.withOpacity(0.6),
               borderRadius: BorderRadius.circular(8.0),
             ),
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,16 +165,16 @@ class _PlanningScreenState extends State<PlanningScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      "${index.time}",
-                      style: TextStyle(fontSize: 18),
+                      index.time,
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(height: 14),
+                        const SizedBox(height: 14),
                         ClipOval(
                           child: Image.asset(
                             index.logoPath,
@@ -181,10 +183,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        SizedBox(width: 8, height: 16),
+                        const SizedBox(width: 8, height: 16),
                         Text(
                           index.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -192,7 +194,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         ClipOval(
                           child: Image.network(
                             index.photoPath,
@@ -201,15 +203,15 @@ class _PlanningScreenState extends State<PlanningScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: 6, height: 80),
+                        const SizedBox(width: 6, height: 80),
                         Text(
                           index.symbolName,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 13, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                    SizedBox(height: 14),
+                    const SizedBox(height: 14),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -221,10 +223,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 26, width: 10),
+                        const SizedBox(height: 26, width: 10),
                         Text(
                           index.place,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 8, 8, 8),
                             fontStyle: FontStyle.italic,
                           ),
@@ -241,31 +243,31 @@ class _PlanningScreenState extends State<PlanningScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFD1D5DB),
+                          color: const Color(0xFFD1D5DB),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: TextButton(
                           onPressed: () {
                             _showCommentDialog(context, index);
                           },
-                          child: Text(
+                          child: const Text(
                             "Add Comment",
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Text(
                           index.comment,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
@@ -315,10 +317,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
         });
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5.0),
+        margin: const EdgeInsets.symmetric(horizontal: 5.0),
         decoration: BoxDecoration(
           color: isSelected
-              ? Color.fromARGB(255, 241, 210, 231)
+              ? const Color.fromARGB(255, 241, 210, 231)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -337,7 +339,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
   }
 
   Widget _buildDaysList() {
-    return Container(
+    return SizedBox(
       height: 50.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -360,11 +362,11 @@ class _PlanningScreenState extends State<PlanningScreen> {
     // Generate a list of boxes with different colors and contents
     List<Widget> boxes = _buildBoxes();
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Expanded(
             child: ListView.builder(
               itemCount: boxes.length,
@@ -381,7 +383,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
                   },*/
                 // child: Padding(
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
                   child: boxes[index],
                   //),
                 );
@@ -404,21 +406,21 @@ class _PlanningScreenState extends State<PlanningScreen> {
           fit: BoxFit.cover,
           height: 36.0,
         ),
-        backgroundColor: Color.fromARGB(
+        backgroundColor: const Color.fromARGB(
             255, 207, 207, 219), // Set the background color to #4F46E5
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Navigate to notifications screen when button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotificationsScreen()),
+                MaterialPageRoute(builder: (context) => const NotificationsScreen()),
               );
             },
           ),
           IconButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             onPressed: () {
               // Show menu options when button is pressed
               _showMenu(context);
@@ -429,7 +431,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               'Planning 1',
@@ -440,10 +442,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(
               '${DateFormat('MMM d, y').format(_startDate)} ~ ${DateFormat('MMM d, y').format(_endDate)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -475,7 +477,7 @@ void _showMenu(BuildContext context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HotelListScreen(
+                      builder: (context) => const HotelListScreen(
                             hotels: [
                               {
                                 'name': 'Hotel A',
@@ -514,7 +516,7 @@ void _showMenu(BuildContext context) {
                 // Navigate to activites screen when pressed
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VisitesScreen()),
+                  MaterialPageRoute(builder: (context) => const VisitesScreen()),
                 );
               },
             ),
@@ -532,24 +534,24 @@ void _showCommentDialog(BuildContext context, Activity activity) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("Add Comment"),
+        title: const Text("Add Comment"),
         content: TextField(
           controller: commentController,
-          decoration: InputDecoration(hintText: "Enter comment"),
+          decoration: const InputDecoration(hintText: "Enter comment"),
         ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           TextButton(
             onPressed: () {
               activity.comment = commentController.text;
               Navigator.pop(context);
             },
-            child: Text("Add"),
+            child: const Text("Add"),
           ),
         ],
       );
@@ -566,7 +568,7 @@ List<String> boxDescriptions = [
 class BoxDescriptionPage extends StatelessWidget {
   final Activity activity;
 
-  BoxDescriptionPage({required this.activity});
+  const BoxDescriptionPage({super.key, required this.activity});
 
   @override
   Widget build(BuildContext context) {
@@ -574,14 +576,14 @@ class BoxDescriptionPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           activity.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromARGB(255, 38, 6, 39),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 207, 207, 219),
+        backgroundColor: const Color.fromARGB(255, 207, 207, 219),
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
 
         //child: SingleChildScrollView(
         child: Column(
@@ -589,44 +591,44 @@ class BoxDescriptionPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.network(activity.photoPath),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             /* Text(place.time),*/
 
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
+                    color: const Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     activity.time,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 39, 41, 176),
                     ),
                   ),
                 ),
-                SizedBox(width: 146),
+                const SizedBox(width: 146),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
+                    color: const Color.fromARGB(255, 153, 158, 233).withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     'Price : ${activity.price}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 39, 41, 176),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               activity.symbolName,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             /*SizedBox(height: 8),
           Text(place.address),*/
@@ -640,47 +642,47 @@ class BoxDescriptionPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(height: 8, width: 6),
+                const SizedBox(height: 8, width: 6),
                 Text(
                   activity.place,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 8, 8, 8),
                     fontStyle: FontStyle.italic,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
-            Divider(
+            const SizedBox(height: 16.0),
+            const Divider(
               color: Color.fromARGB(255, 189, 184, 184),
               thickness: 2.0,
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               "Description",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(activity.description),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text("Accept", style: TextStyle(color: Colors.white)),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromARGB(255, 252, 56, 121)),
+                        const Color.fromARGB(255, 252, 56, 121)),
                   ),
+                  child: const Text("Accept", style: TextStyle(color: Colors.white)),
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text("Decline", style: TextStyle(color: Colors.black)),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromARGB(255, 214, 208, 208)),
+                        const Color.fromARGB(255, 214, 208, 208)),
                   ),
+                  child: const Text("Decline", style: TextStyle(color: Colors.black)),
                 ),
               ],
             ),

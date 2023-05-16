@@ -3,9 +3,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:voyageur_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:voyageur_app/modele/planning_model.dart';
-import 'package:voyageur_app/modele/planningmainModel.dart';
-import 'package:voyageur_app/modele/plannings.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 

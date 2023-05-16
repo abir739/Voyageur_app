@@ -49,7 +49,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image(
+                const Image(
                     image: AssetImage(Config.app_icon), height: 50, width: 50),
                 const SizedBox(
                   height: 10,
@@ -144,7 +144,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     login(context, phoneController.text.trim());
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                   ),
                   child: const Text("Register"),
                 )

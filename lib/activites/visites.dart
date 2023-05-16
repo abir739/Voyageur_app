@@ -10,12 +10,12 @@ import 'package:voyageur_app/activites/hotels.dart';
 class PlaceCard extends StatelessWidget {
   final Place place;
 
-  PlaceCard({required this.place});
+  const PlaceCard({super.key, required this.place});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
 
       //child: SingleChildScrollView(
       child: Column(
@@ -29,24 +29,25 @@ class PlaceCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 163, 97, 175).withOpacity(0.2),
+                  color:
+                      const Color.fromARGB(255, 163, 97, 175).withOpacity(0.2),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
                   place.time,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.purple,
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             place.name,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           /*SizedBox(height: 8),
           Text(place.address),*/
@@ -60,47 +61,49 @@ class PlaceCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: 8, width: 6),
+              const SizedBox(height: 8, width: 6),
               Text(
                 place.address,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color.fromARGB(255, 8, 8, 8),
                   fontStyle: FontStyle.italic,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 16.0),
-          Divider(
+          const SizedBox(height: 16.0),
+          const Divider(
             color: Color.fromARGB(255, 189, 184, 184),
             thickness: 2.0,
           ),
-          SizedBox(height: 16),
-          Text(
+          const SizedBox(height: 16),
+          const Text(
             "Description",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(place.description),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child: Text("Accept", style: TextStyle(color: Colors.white)),
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xFF4F46E5)),
+                      MaterialStateProperty.all<Color>(const Color(0xFF4F46E5)),
                 ),
+                child:
+                    const Text("Accept", style: TextStyle(color: Colors.white)),
               ),
               ElevatedButton(
                 onPressed: () {},
-                child: Text("Decline", style: TextStyle(color: Colors.black)),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 214, 208, 208)),
+                      const Color.fromARGB(255, 214, 208, 208)),
                 ),
+                child: const Text("Decline",
+                    style: TextStyle(color: Colors.black)),
               ),
             ],
           ),
@@ -112,12 +115,14 @@ class PlaceCard extends StatelessWidget {
 }
 
 class VisitesScreen extends StatefulWidget {
+  const VisitesScreen({super.key});
+
   @override
   _VisitesScreenState createState() => _VisitesScreenState();
 }
 
 class _VisitesScreenState extends State<VisitesScreen> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   List<Place> _places = [];
 
   @override
@@ -130,28 +135,29 @@ class _VisitesScreenState extends State<VisitesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Visite/Activity',
           style: TextStyle(
             color: Color.fromARGB(255, 38, 6, 39),
           ),
         ),
-        backgroundColor: Color.fromARGB(
+        backgroundColor: const Color.fromARGB(
             255, 207, 207, 219), // Set the background color to #4F46E5
 
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Navigate to notifications screen when button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotificationsScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen()),
               );
             },
           ),
           IconButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             onPressed: () {
               // Show menu options when button is pressed
               _showMenu(context);
@@ -182,67 +188,238 @@ class _VisitesScreenState extends State<VisitesScreen> {
 }
 
 // Define a function to show the menu options
+//
+
 void _showMenu(BuildContext context) {
+  final Color primary = Colors.white;
+  final Color active = Colors.black;
+
+  double screenHeight = MediaQuery.of(context).size.height;
+
   showModalBottomSheet(
     context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
     builder: (BuildContext context) {
-      return Container(
-        child: Wrap(
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.local_hotel_outlined),
-              title: const Text('Hotels'),
-              onTap: () {
-                // Navigate to hotels screen when pressed
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HotelListScreen(
-                            hotels: [
-                              {
-                                'name': 'Hotel A',
-                                'image': 'assets/images/hotel-img.png',
-                                'time': '15:00-16:00',
-                                'fullName': 'Hotel Carlton',
-                                'rating': 4,
-                                'address': '123 Main St, Anytown USA',
+      return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8, // Set the desired width
+        child: Container(
+          height: MediaQuery.of(context).size.height - 77,
+          child: ClipPath(
+            clipper: OvalRightBorderClipper(),
+            child: Drawer(
+              child: Container(
+                padding: const EdgeInsets.only(left: 26.0, right: 140),
+                decoration: BoxDecoration(
+                  color: primary,
+                  boxShadow: [BoxShadow(color: Colors.black45)],
+                ),
+                width: 300,
+                child: SafeArea(
+                  /// ---------------------------
+                  /// Building scrolling  content for drawer .
+                  /// ---------------------------
+
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        // Container(
+                        //   alignment: Alignment.centerRight,
+                        //   child: IconButton(
+                        //     icon: Icon(
+                        //       Icons.power_settings_new,
+                        //       color: active,
+                        //     ),
+                        //     onPressed: () {},
+                        //   ),
+                        // ),
+
+                        /// ---------------------------
+                        /// Building header for drawer .
+                        /// ---------------------------
+                        SizedBox(height: 28.0),
+                        Container(
+                          height: 90,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                  colors: [Colors.orange, Colors.deepOrange])),
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: AssetImage(
+                              'assets/images/abir.jpeg',
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+
+                        /// ---------------------------
+                        /// Building header title for drawer .
+                        /// ---------------------------
+
+                        Text(
+                          "Abir Cherif",
+                          style: TextStyle(
+                              color: Colors.purple.withOpacity(0.6),
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          "@Abir.ch",
+                          style: TextStyle(color: active, fontSize: 16.0),
+                        ),
+
+                        /// ---------------------------
+                        /// Building items list  for drawer .
+                        /// ---------------------------
+                        SizedBox(height: 16.0),
+                        ListTile(
+                          leading: Icon(Icons.home, color: active),
+                          title: Text('Home', style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigate to home screen
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => PlanningListPage()),
+                            // );
+                          },
+                        ),
+                        _buildDivider(),
+                        ListTile(
+                          leading: Icon(Icons.playlist_add_circle_outlined,
+                              color: active),
+                          title: Text('Destination',
+                              style: TextStyle(color: active)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const VisitesScreen()),
+                            );
+                          },
+                        ),
+                        _buildDivider(),
+                        ListTile(
+                          leading: Icon(Icons.calendar_month, color: active),
+                          title:
+                              Text('Schedule', style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => ScheduleScreen()),
+                            // );
+                          },
+                        ),
+                        _buildDivider(),
+                        ListTile(
+                          leading: Icon(Icons.groups, color: active),
+                          title:
+                              Text('Clients', style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => ClientScreen()),
+                            // );
+                          },
+                        ),
+                        _buildDivider(),
+                        ListTile(
+                          leading: Icon(Icons.notification_add, color: active),
+                          title: Text('Create Notification',
+                              style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => AddNotification()),
+                            // );
+                          },
+                        ),
+                        _buildDivider(),
+                        ListTile(
+                          leading: Icon(Icons.info, color: active),
+                          title: Text('About', style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => HomePage()),
+                            // );
+                          },
+                        ),
+
+                        /// ---------------------------
+                        /// last Item for drawer
+                        /// ---------------------------
+
+                        _buildDivider(),
+                        SizedBox(height: 28.0),
+                        Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                'Log In',
+                                style: TextStyle(
+                                  fontFamily: 'Bahij Janna',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  color: Colors.purple.withOpacity(0.6),
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              trailing: Icon(Icons.login, color: Colors.red),
+                              onTap: () {
+                                Navigator.of(context).pop();
                               },
-                              {
-                                'name': 'Hotel B',
-                                'image': 'hotel_b.jpg',
-                                'time': '45 minutes',
-                                'fullName': 'Hotel B Full Name',
-                                'rating': 3,
-                                'address': '456 Oak St, Anycity USA',
-                              },
-                              // Add more hotels here...
-                            ],
-                          )),
-                );
-              },
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).padding.bottom,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.category),
-              title: const Text('Restaurants'),
-              onTap: () {
-                // Navigate to restaurants screen when pressed
-                Navigator.pushNamed(context, '/restaurants');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.map_sharp),
-              title: const Text('Activié/Visite'),
-              onTap: () {
-                // Navigate to activites screen when pressed
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => VisitesScreen()),
-                );
-              },
-            ),
-          ],
+          ),
         ),
       );
     },
   );
+}
+
+Divider _buildDivider() {
+  final Color divider = Colors.deepOrange;
+  return Divider(
+    color: divider,
+  );
+}
+
+class OvalRightBorderClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(size.width * (2 / 3) - 20, 0);
+    path.quadraticBezierTo(size.width * (2.2 / 3), size.height / 4,
+        size.width * (2.2 / 3), size.height / 2);
+    path.quadraticBezierTo(
+        size.width * (2.2 / 3),
+        size.height - (size.height / 4),
+        size.width * (2 / 3) - 20,
+        size.height);
+    path.lineTo(0, size.height);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
+  }
 }

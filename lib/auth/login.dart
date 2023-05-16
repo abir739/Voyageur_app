@@ -3,6 +3,8 @@ import 'package:voyageur_app/planning/planning_screen.dart'; // Import the plann
 //import 'package:voyageur_app/planning/planning_test.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -28,9 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFF9FAFB),
+        color: const Color(0xFFF9FAFB),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,15 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 150,
                 height: 150,
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Welcome to Zenify app!',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
               Form(
                 key: _formKey,
                 child: Column(
@@ -57,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextFormField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Email',
                         prefixIcon: Icon(Icons.mail),
                       ),
@@ -70,11 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     TextFormField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Password',
                         prefixIcon: Icon(Icons.lock),
                       ),
@@ -87,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     Row(
                       children: [
                         Checkbox(
@@ -98,10 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                         ),
-                        Text('Remember me'),
+                        const Text('Remember me'),
                       ],
                     ),
-                    SizedBox(height: 32.0),
+                    const SizedBox(height: 32.0),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -109,12 +111,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PlanningScreen(),
+                              builder: (context) => const PlanningScreen(),
                             ),
                           );
                         }
                       },
-                      child: Text('Log In'),
+                      child: const Text('Log In'),
                     ),
                   ],
                 ),

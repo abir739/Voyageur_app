@@ -1,193 +1,132 @@
-import 'dart:convert';
-import 'package:flutter_svg/svg.dart';
-import 'package:voyageur_app/models/place_model.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:voyageur_app/notification/notification.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mailto/mailto.dart';
+import 'package:voyageur_app/claims/create_claims.dart';
+import 'package:voyageur_app/guide/profile_item.dart';
+import 'package:voyageur_app/planning/planning_screen.dart';
+import '../activites/visites.dart';
 
-class PlaceCard extends StatelessWidget {
-  final Place place;
-
-  const PlaceCard({super.key, required this.place});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-
-      //child: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.network(place.imageUrl),
-          /*SizedBox(height: 16),
-          Text(place.time),*/
-
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color:
-                      const Color.fromARGB(255, 163, 97, 175).withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  place.time,
-                  style: const TextStyle(
-                    color: Colors.purple,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            place.name,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          /*SizedBox(height: 8),
-          Text(place.address),*/
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                child: SvgPicture.asset(
-                  'assets/images/place.svg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 8, width: 6),
-              Text(
-                place.address,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 8, 8, 8),
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16.0),
-          const Divider(
-            color: Color.fromARGB(255, 189, 184, 184),
-            thickness: 2.0,
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            "Description",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Text(place.description),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF4F46E5)),
-                ),
-                child:
-                    const Text("Accept", style: TextStyle(color: Colors.white)),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 214, 208, 208)),
-                ),
-                child: const Text("Decline",
-                    style: TextStyle(color: Colors.black)),
-              ),
-            ],
-          ),
-        ],
-      ),
-      // ),
-    );
-  }
+_makingPhoneCall(number) async {
+  bool? res = await FlutterPhoneDirectCaller.callNumber(number);
 }
 
-class VisitesScreen extends StatefulWidget {
-  const VisitesScreen({super.key});
-
-  @override
-  _VisitesScreenState createState() => _VisitesScreenState();
+_whatsapp(number) async {
+  await launch(
+      "https://wa.me/$number?text=Hi, how are you?\n Can we meet sometimes?");
 }
 
-class _VisitesScreenState extends State<VisitesScreen> {
-  final PageController _pageController = PageController();
-  List<Place> _places = [];
+_mail(eMail) async {
+  final mailtoLink = Mailto(
+      to: ["$eMail"],
+      subject: "mail example",
+      body: "Nice app but needs some improvement.");
+  await launch("$mailtoLink");
+}
+
+_instagram(username) async {
+  await launch("https://www.instagram.com/$username/");
+}
+
+_facebook(username) async {
+  await launch("https://www.facebook.com/$username/");
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
-  void initState() {
-    super.initState();
-    _loadPlaces();
-  }
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF353657).withOpacity(0.99),
       appBar: AppBar(
-        title: const Text(
-          'Visite/Activity',
-          style: TextStyle(
-            color: Color.fromARGB(255, 38, 6, 39),
-          ),
+        title: Row(
+          children: [
+            SvgPicture.asset(
+              'assets/images/Logo.svg',
+              fit: BoxFit.cover,
+              height: 36.0,
+            ),
+            const SizedBox(
+                width: 30.0), // Add spacing between the logo and the text
+            const Text('Guide Profile'),
+          ],
         ),
-        backgroundColor: const Color.fromARGB(
-            255, 207, 207, 219), // Set the background color to #4F46E5
-
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Navigate to notifications screen when button is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NotificationsScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              // Show menu options when button is pressed
-              _showMenu(context);
-            },
-          ),
-        ],
+        backgroundColor: const Color.fromARGB(255, 207, 207, 219),
       ),
-      body: PageView.builder(
-        controller: _pageController,
-        itemCount: _places.length,
-        itemBuilder: (BuildContext context, int index) {
-          return PlaceCard(place: _places[index]);
-        },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          const Expanded(
+            flex: 2,
+            child: CircleAvatar(
+              radius: 105,
+              backgroundImage: AssetImage("assets/images/ppp.jpg"),
+            ),
+          ),
+          Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      await _makingPhoneCall("+216 92871567");
+                    },
+                    child: const ProfileItem(
+                      title: "Call Me Maybe",
+                      icon: Icons.call,
+                    ),
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        _whatsapp("+216 92871567");
+                      },
+                      child: const ProfileItem(
+                          title: "WhatsApp", icon: Icons.message)),
+                  GestureDetector(
+                    onTap: () async {
+                      await _mail("test@test.com");
+                    },
+                    child: const ProfileItem(
+                      title: "E-mail",
+                      icon: Icons.mail,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _instagram("instagram");
+                    },
+                    child: const ProfileItem(
+                      title: "Instagram",
+                      icon: Icons.camera,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _facebook("facebook");
+                    },
+                    child: const ProfileItem(
+                      title: "Facebook",
+                      icon: Icons.facebook,
+                    ),
+                  )
+                ],
+              ))
+        ],
       ),
     );
   }
-
-  void _loadPlaces() async {
-    String data = await rootBundle.loadString(
-        'assets/json/visites.json'); // assuming the JSON file is in the assets folder
-    List<dynamic> placesJson = jsonDecode(data);
-    List<Place> places =
-        placesJson.map((placeJson) => Place.fromJson(placeJson)).toList();
-    setState(() {
-      _places = places;
-    });
-  }
 }
-
-// Define a function to show the menu options
-//
 
 void _showMenu(BuildContext context) {
   const Color primary = Colors.white;
@@ -277,19 +216,62 @@ void _showMenu(BuildContext context) {
                           leading: const Icon(Icons.home, color: active),
                           title: const Text('Home', style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigate to home screen
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => PlanningListPage()),
-                            // );
+                            //  Navigate to home screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PlanningScreen()),
+                            );
+                          },
+                        ),
+
+                        _buildDivider(),
+                        ListTile(
+                          leading: const Icon(Icons.contact_page, color: active),
+                          title:
+                              const Text('My guide', style: TextStyle(color: active)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage(
+                                        title: '',
+                                      )),
+                            );
                           },
                         ),
                         _buildDivider(),
                         ListTile(
-                          leading: const Icon(Icons.playlist_add_circle_outlined,
-                              color: active),
-                          title: const Text('Destination',
+                          leading:
+                              const Icon(Icons.attach_money_sharp, color: active),
+                          title: const Text('Transfer and exchange of money',
+                              style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => ClientScreen()),
+                            // );
+                          },
+                        ),
+                        // _buildDivider(),
+                        // ListTile(
+                        //   leading: Icon(Icons.notification_add, color: active),
+                        //   title: Text('Create Notification',
+                        //       style: TextStyle(color: active)),
+                        //   onTap: () {
+                        //     // Navigator.push(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => AddNotification()),
+                        //     // );
+                        //   },
+                        // ),
+
+                        _buildDivider(),
+                        ListTile(
+                          leading: const Icon(Icons.location_city, color: active),
+                          title: const Text('Destinations',
                               style: TextStyle(color: active)),
                           onTap: () {
                             Navigator.push(
@@ -301,43 +283,19 @@ void _showMenu(BuildContext context) {
                         ),
                         _buildDivider(),
                         ListTile(
-                          leading: const Icon(Icons.calendar_month, color: active),
-                          title:
-                              const Text('Schedule', style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => ScheduleScreen()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: const Icon(Icons.groups, color: active),
-                          title:
-                              const Text('Clients', style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => ClientScreen()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: const Icon(Icons.notification_add, color: active),
-                          title: const Text('Create Notification',
+                          leading: const Icon(Icons.feedback_sharp, color: active),
+                          title: const Text('create claims',
                               style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => AddNotification()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CreateComplaintsScreen()),
+                            );
                           },
                         ),
+
                         _buildDivider(),
                         ListTile(
                           leading: const Icon(Icons.info, color: active),

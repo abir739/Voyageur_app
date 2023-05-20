@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Update the import statement for flutter_svg package
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:mailto/mailto.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,17 +28,17 @@ class ProfilePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const Expanded(
             flex: 2,
             child: CircleAvatar(
               radius: 105,
-              backgroundImage: AssetImage("images/pp.jpg"),
+              backgroundImage: AssetImage("assets/images/pp.jpg"),
             ),
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Padding(
             padding: const EdgeInsets.all(3.0),
             child: Column(
@@ -56,13 +61,13 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 25),
+                            padding: EdgeInsets.only(left: 25),
                             child: Row(
                               children: [
                                 Text(
@@ -81,7 +86,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 15),
+                            padding: EdgeInsets.only(right: 15),
                             child: Icon(Icons.person),
                           ),
                         ],
@@ -89,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
@@ -107,13 +112,13 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: EdgeInsets.only(left: 15),
                             child: Row(
                               children: [
                                 Text(
@@ -132,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 25),
+                            padding: EdgeInsets.only(right: 25),
                             child: Icon(Icons.work),
                           ),
                         ],
@@ -140,7 +145,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
@@ -158,17 +163,17 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: EdgeInsets.only(left: 15),
                             child: Row(
                               children: [
                                 Text(
-                                  '+1 123-456-7890',
+                                  '+216 96824877',
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -177,7 +182,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 25),
+                            padding: EdgeInsets.only(right: 25),
                             child: Icon(Icons.call),
                           ),
                         ],
@@ -185,7 +190,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
@@ -203,13 +208,13 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: EdgeInsets.only(left: 15),
                             child: Row(
                               children: [
                                 Text(
@@ -222,7 +227,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 25),
+                            padding: EdgeInsets.only(right: 25),
                             child: Icon(Icons.mail),
                           ),
                         ],
@@ -230,7 +235,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
@@ -248,13 +253,13 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: EdgeInsets.only(left: 15),
                             child: Row(
                               children: [
                                 Text(
@@ -267,7 +272,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 25),
+                            padding: EdgeInsets.only(right: 25),
                             child: Icon(Icons.record_voice_over),
                           ),
                         ],
@@ -285,7 +290,28 @@ class ProfilePage extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: ProfilePage(),
   ));
+}
+
+_makingPhoneCall(number) async {
+  bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+}
+
+_whatsapp(number) async {
+  await launch(
+      "https://wa.me/$number?text=Hi, how are you?\n Can we talk now?");
+}
+
+_mail(eMail) async {
+  final mailtoLink = Mailto(
+      to: ["$eMail"],
+      subject: "Extra excurtion",
+      body: "Nice trip but needs some improvement.");
+  await launch("$mailtoLink");
+}
+
+_instagram(username) async {
+  await launch("https://www.instagram.com/$username/");
 }

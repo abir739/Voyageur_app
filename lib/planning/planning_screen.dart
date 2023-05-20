@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:voyageur_app/claims/create_claims.dart';
 import 'package:voyageur_app/notification/notification.dart';
-import 'package:voyageur_app/activites/hotels.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../activites/visites.dart';
-import '../guide/guide_profil.dart';
+import '../guide/guide_profile_test.dart';
 
 // the description of an activity
 class Activity {
@@ -180,10 +180,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
           "https://unsacsurledos.com/wp-content/uploads/2016/12/PC051057.jpg",
       place: "Tunisia-Gabes",
       description:
-          "Quand l’histoire nous emporte de l’autre côté de l’écran ! Après la découverte des décors de Game of Thrones en Irlande du Nord, nous voici dans ceux de Star Wars en Tunisie. Au milieu du désert, nous sommes partis explorer la planète Tatooine, sur les traces de Anakin, Luke, Obi-Wan, Darth et Vador. Voici notre aventure en mode Jedi et toutes les informations pour visiter les lieux de tournage Star Wars en Tunisie." +
-              "Star Wars en Tunisie: " +
-              "Star Wars, une saga qu’on ne présente plus ! Qu’on soit fan ou pas, tout le monde connait le souffle rauque de Darth Vador, le cri de Luke, le bikini de Leia et la dégaine de Han Solo. Mais peu savent où les épisodes ont été tournés !" +
-              "C’est dans le sud de la Tunisie, au milieu des étendues désertiques, que des passages de la trilogie originale (épisodes IV – V – VI) et de la « Prélogie » (épisodes I – II – III) ont été tournés, tout spécialement les épisodes I (tourné en 1997, sorti en 1999), II (tourné en 2000, sorti en 2002), III (tourné en 2003, sorti en 2005) et IV (tourné en 1976, sorti en 1977) ,' tous ceux qui concernent la planete Tatooine, planete natale du mignon petit blondinet Anakin Skywalker.",
+          "Quand l’histoire nous emporte de l’autre côté de l’écran ! Après la découverte des décors de Game of Thrones en Irlande du Nord, nous voici dans ceux de Star Wars en Tunisie. Au milieu du désert, nous sommes partis explorer la planète Tatooine, sur les traces de Anakin, Luke, Obi-Wan, Darth et Vador. Voici notre aventure en mode Jedi et toutes les informations pour visiter les lieux de tournage Star Wars en Tunisie.Star Wars en Tunisie: Star Wars, une saga qu’on ne présente plus ! Qu’on soit fan ou pas, tout le monde connait le souffle rauque de Darth Vador, le cri de Luke, le bikini de Leia et la dégaine de Han Solo. Mais peu savent où les épisodes ont été tournés !C’est dans le sud de la Tunisie, au milieu des étendues désertiques, que des passages de la trilogie originale (épisodes IV – V – VI) et de la « Prélogie » (épisodes I – II – III) ont été tournés, tout spécialement les épisodes I (tourné en 1997, sorti en 1999), II (tourné en 2000, sorti en 2002), III (tourné en 2003, sorti en 2005) et IV (tourné en 1976, sorti en 1977) ,' tous ceux qui concernent la planete Tatooine, planete natale du mignon petit blondinet Anakin Skywalker.",
     ),
     Activity(
       name: "Activities",
@@ -195,8 +192,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
           'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/cd/1b/31/caption.jpg?w=500&h=400&s=1',
       place: 'Par Djerba Explore',
       description:
-          'Essayez le quad à Djerba pour un circuit aventureux et passionnant, adapté aux débutants, aux cyclistes expérimentés et aux groupes. Parcourez des paysages incroyables remplis d' +
-              "eucalyptus et de figuiers de Barbarie avec des machines de haute qualité et avec un guide spécialisé.",
+          'Essayez le quad à Djerba pour un circuit aventureux et passionnant, adapté aux débutants, aux cyclistes expérimentés et aux groupes. Parcourez des paysages incroyables remplis d' "eucalyptus et de figuiers de Barbarie avec des machines de haute qualité et avec un guide spécialisé.",
     ),
   ];
 
@@ -794,8 +790,8 @@ class BoxDescriptionPage extends StatelessWidget {
 }
 
 void _showMenu(BuildContext context) {
-  final Color primary = Colors.white;
-  final Color active = Colors.black;
+  const Color primary = Colors.white;
+  const Color active = Colors.black;
 
   double screenHeight = MediaQuery.of(context).size.height;
 
@@ -806,14 +802,14 @@ void _showMenu(BuildContext context) {
     builder: (BuildContext context) {
       return SizedBox(
         width: MediaQuery.of(context).size.width * 0.8, // Set the desired width
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height - 77,
           child: ClipPath(
             clipper: OvalRightBorderClipper(),
             child: Drawer(
               child: Container(
                 padding: const EdgeInsets.only(left: 26.0, right: 140),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: primary,
                   boxShadow: [BoxShadow(color: Colors.black45)],
                 ),
@@ -840,22 +836,22 @@ void _showMenu(BuildContext context) {
                         /// ---------------------------
                         /// Building header for drawer .
                         /// ---------------------------
-                        SizedBox(height: 28.0),
+                        const SizedBox(height: 28.0),
                         Container(
                           height: 90,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
                                   colors: [Colors.orange, Colors.deepOrange])),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 40,
                             backgroundImage: AssetImage(
                               'assets/images/abir.jpeg',
                             ),
                           ),
                         ),
-                        SizedBox(height: 5.0),
+                        const SizedBox(height: 5.0),
 
                         /// ---------------------------
                         /// Building header title for drawer .
@@ -868,7 +864,7 @@ void _showMenu(BuildContext context) {
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600),
                         ),
-                        Text(
+                        const Text(
                           "@Abir.ch",
                           style: TextStyle(color: active, fontSize: 16.0),
                         ),
@@ -876,24 +872,67 @@ void _showMenu(BuildContext context) {
                         /// ---------------------------
                         /// Building items list  for drawer .
                         /// ---------------------------
-                        SizedBox(height: 16.0),
+                        const SizedBox(height: 16.0),
                         ListTile(
-                          leading: Icon(Icons.home, color: active),
-                          title: Text('Home', style: TextStyle(color: active)),
+                          leading: const Icon(Icons.home, color: active),
+                          title: const Text('Home', style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigate to home screen
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => PlanningListPage()),
-                            // );
+                            //  Navigate to home screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PlanningScreen()),
+                            );
+                          },
+                        ),
+
+                        _buildDivider(),
+                        ListTile(
+                          leading: const Icon(Icons.contact_page, color: active),
+                          title:
+                              const Text('My guide', style: TextStyle(color: active)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage(
+                                        title: '',
+                                      )),
+                            );
                           },
                         ),
                         _buildDivider(),
                         ListTile(
-                          leading: Icon(Icons.playlist_add_circle_outlined,
-                              color: active),
-                          title: Text('Destination',
+                          leading:
+                              const Icon(Icons.attach_money_sharp, color: active),
+                          title: const Text('Transfer and exchange of money',
+                              style: TextStyle(color: active)),
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => ClientScreen()),
+                            // );
+                          },
+                        ),
+                        // _buildDivider(),
+                        // ListTile(
+                        //   leading: Icon(Icons.notification_add, color: active),
+                        //   title: Text('Create Notification',
+                        //       style: TextStyle(color: active)),
+                        //   onTap: () {
+                        //     // Navigator.push(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => AddNotification()),
+                        //     // );
+                        //   },
+                        // ),
+
+                        _buildDivider(),
+                        ListTile(
+                          leading: const Icon(Icons.location_city, color: active),
+                          title: const Text('Destinations',
                               style: TextStyle(color: active)),
                           onTap: () {
                             Navigator.push(
@@ -905,47 +944,23 @@ void _showMenu(BuildContext context) {
                         ),
                         _buildDivider(),
                         ListTile(
-                          leading: Icon(Icons.contact_page, color: active),
-                          title:
-                              Text('My guide', style: TextStyle(color: active)),
+                          leading: const Icon(Icons.feedback_sharp, color: active),
+                          title: const Text('create claims',
+                              style: TextStyle(color: active)),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ProfilePage()),
+                                  builder: (context) =>
+                                      const CreateComplaintsScreen()),
                             );
                           },
                         ),
+
                         _buildDivider(),
                         ListTile(
-                          leading: Icon(Icons.groups, color: active),
-                          title:
-                              Text('Clients', style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => ClientScreen()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: Icon(Icons.notification_add, color: active),
-                          title: Text('Create Notification',
-                              style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => AddNotification()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: Icon(Icons.info, color: active),
-                          title: Text('About', style: TextStyle(color: active)),
+                          leading: const Icon(Icons.info, color: active),
+                          title: const Text('About', style: TextStyle(color: active)),
                           onTap: () {
                             // Navigator.push(
                             //   context,
@@ -960,7 +975,7 @@ void _showMenu(BuildContext context) {
                         /// ---------------------------
 
                         _buildDivider(),
-                        SizedBox(height: 28.0),
+                        const SizedBox(height: 28.0),
                         Column(
                           children: <Widget>[
                             ListTile(
@@ -974,7 +989,7 @@ void _showMenu(BuildContext context) {
                                 ),
                                 textAlign: TextAlign.left,
                               ),
-                              trailing: Icon(Icons.login, color: Colors.red),
+                              trailing: const Icon(Icons.login, color: Colors.red),
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
@@ -998,8 +1013,8 @@ void _showMenu(BuildContext context) {
 }
 
 Divider _buildDivider() {
-  final Color divider = Colors.deepOrange;
-  return Divider(
+  const Color divider = Colors.deepOrange;
+  return const Divider(
     color: divider,
   );
 }

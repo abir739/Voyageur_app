@@ -63,6 +63,10 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   sidebarx: ^0.15.0
   get: ^4.6.5
+  url_launcher: ^6.1.11
+  flutter_phone_direct_caller: ^2.1.1
+  mailto: ^2.0.0
+  image_picker: ^0.8.7+5
   
 
 

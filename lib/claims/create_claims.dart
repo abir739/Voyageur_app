@@ -12,17 +12,19 @@ class CreateComplaintsScreen extends StatefulWidget {
 
 class _CreateComplaintsScreenState extends State<CreateComplaintsScreen> {
   String _selectedOption = '';
-  late File _image;
+  File? _image; // Modified field to be nullable
 
   Future<void> _takePhoto() async {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.camera);
 
-    setState(() {
-      if (pickedImage != null) {
+    if (pickedImage != null) {
+      setState(() {
         _image = File(pickedImage.path);
-      }
-    });
+      });
+    } else {
+      print('No image selected');
+    }
   }
 
   void _createComplaint(String option) {
@@ -33,7 +35,7 @@ class _CreateComplaintsScreenState extends State<CreateComplaintsScreen> {
           // Logic for sending the photo complaint
           // Access the `_image` file and send it
           // You can use an API call or send it via email, depending on your requirements
-          print('Sending photo complaint: ${_image.path}');
+          print('Sending photo complaint: ${_image?.path}');
         } else {
           print('No photo selected');
         }

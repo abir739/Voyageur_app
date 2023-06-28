@@ -51,7 +51,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               // Navigate to notifications screen when button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen()),
               );
             },
           ),
@@ -83,8 +84,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       children: [
                         Text('${notifications[index].senderName} - '),
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 163, 97, 175)
                                 .withOpacity(0.2),
@@ -140,34 +141,82 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                // Handle the "Decline" button press
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Confirmation"),
+                                      content: Text(
+                                          "Do you really want to decline this activity?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            // Handle the "Yes" button press
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text("Yes"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            // Handle the "No" button press
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text("No"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        const Color.fromARGB(255, 214, 208, 208)),
+                                  const Color.fromARGB(255, 214, 208, 208),
+                                ),
                               ),
-                              child: const Text('Decline',
-                                  style: TextStyle(color: Colors.black)),
+                              child: const Text(
+                                'Decline',
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
-
                             const SizedBox(
-                                width:
-                                    10), // Add some space between the buttons
+                              width: 10,
+                            ),
                             TextButton(
                               onPressed: () {
-                                // Handle the "Accept" button press
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Confirmation"),
+                                      content: Text(
+                                          "Nice! You will participate in this activity."),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            // Handle the "OK" button press
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text("OK"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        const Color(0xFF4F46E5)),
+                                  const Color(0xFF4F46E5),
+                                ),
                               ),
-                              child: const Text('Accept',
-                                  style: TextStyle(color: Colors.white)),
+                              child: const Text(
+                                'Accept',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             )
                           ],
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -236,7 +285,8 @@ void _showMenu(BuildContext context) {
                 // Navigate to activites screen when pressed
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const VisitesScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const VisitesScreen()),
                 );
               },
             ),

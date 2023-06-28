@@ -5,26 +5,28 @@ import 'package:voyageur_app/models/place_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:voyageur_app/notification/notification.dart';
+import 'package:voyageur_app/claims/create_claims_test.dart';
+import '../guide/guide_profile_test.dart';
+import '../planning/planning_screen.dart';
+import 'package:voyageur_app/about_page.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class PlaceCard extends StatelessWidget {
   final Place place;
 
-  const PlaceCard({super.key, required this.place});
+  const PlaceCard({Key? key, required this.place}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-
-      //child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.network(place.imageUrl),
-          /*SizedBox(height: 16),
-          Text(place.time),*/
-
           Row(
             children: [
               Container(
@@ -48,9 +50,6 @@ class PlaceCard extends StatelessWidget {
             place.name,
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          /*SizedBox(height: 8),
-          Text(place.address),*/
-
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -86,17 +85,120 @@ class PlaceCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF4F46E5)),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => Dialog(
+                        backgroundColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        elevation: 0.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.only(
+                                top: 66.0 + 16.0,
+                                bottom: 16.0,
+                                left: 16.0,
+                                right: 16.0,
+                              ),
+                              margin: const EdgeInsets.only(top: 66.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(16.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 16.0,
+                                    offset: Offset(0.0, 16.0),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text(
+                                    "Confirmation",
+                                    style: TextStyle(
+                                      fontSize: 24.0,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.teal,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  Text(
+                                    "You accepted this activity.",
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24.0),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.teal,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text(
+                                        "Submit",
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              left: 24.0 + 66.0,
+                              right: 24.0 + 66.0,
+                              child: CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage:
+                                    Image.network(place.imageUrl).image,
+                                backgroundColor: Colors.blueAccent,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF4F46E5),
+                  ),
+                  child: const Text("Accept",
+                      style: TextStyle(color: Colors.white)),
                 ),
-                child:
-                    const Text("Accept", style: TextStyle(color: Colors.white)),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.TOPSLIDE,
+                    dialogType: DialogType.WARNING,
+                    title: 'Decline',
+                    desc: 'Are you sure you want to decline this activity?',
+                    btnOkIcon: Icons.check_circle,
+                    btnOkColor: Colors.green.shade900,
+                    btnOkOnPress: () {
+                      // Action to perform when "OK" button is pressed.
+                    },
+                  ).show();
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromARGB(255, 214, 208, 208)),
@@ -108,7 +210,6 @@ class PlaceCard extends StatelessWidget {
           ),
         ],
       ),
-      // ),
     );
   }
 }
@@ -275,21 +376,67 @@ void _showMenu(BuildContext context) {
                         const SizedBox(height: 16.0),
                         ListTile(
                           leading: const Icon(Icons.home, color: active),
-                          title: const Text('Home', style: TextStyle(color: active)),
+                          title: const Text('Home',
+                              style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigate to home screen
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => PlanningListPage()),
-                            // );
+                            //  Navigate to home screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PlanningScreen()),
+                            );
                           },
                         ),
+
                         _buildDivider(),
                         ListTile(
-                          leading: const Icon(Icons.playlist_add_circle_outlined,
-                              color: active),
-                          title: const Text('Destination',
+                          leading:
+                              const Icon(Icons.contact_page, color: active),
+                          title: const Text('My guide',
+                              style: TextStyle(color: active)),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage(
+                                        title: '',
+                                      )),
+                            );
+                          },
+                        ),
+                        // _buildDivider(),
+                        // ListTile(
+                        //   leading: const Icon(Icons.attach_money_sharp,
+                        //       color: active),
+                        //   title: const Text('Transfer and exchange of money',
+                        //       style: TextStyle(color: active)),
+                        //   onTap: () {
+                        //     // Navigator.push(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => ClientScreen()),
+                        //     // );
+                        //   },
+                        // ),
+                        // _buildDivider(),
+                        // ListTile(
+                        //   leading: Icon(Icons.notification_add, color: active),
+                        //   title: Text('Create Notification',
+                        //       style: TextStyle(color: active)),
+                        //   onTap: () {
+                        //     // Navigator.push(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => AddNotification()),
+                        //     // );
+                        //   },
+                        // ),
+
+                        _buildDivider(),
+                        ListTile(
+                          leading:
+                              const Icon(Icons.location_city, color: active),
+                          title: const Text('Destinations',
                               style: TextStyle(color: active)),
                           onTap: () {
                             Navigator.push(
@@ -301,53 +448,30 @@ void _showMenu(BuildContext context) {
                         ),
                         _buildDivider(),
                         ListTile(
-                          leading: const Icon(Icons.calendar_month, color: active),
-                          title:
-                              const Text('Schedule', style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => ScheduleScreen()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: const Icon(Icons.groups, color: active),
-                          title:
-                              const Text('Clients', style: TextStyle(color: active)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => ClientScreen()),
-                            // );
-                          },
-                        ),
-                        _buildDivider(),
-                        ListTile(
-                          leading: const Icon(Icons.notification_add, color: active),
-                          title: const Text('Create Notification',
+                          leading:
+                              const Icon(Icons.feedback_sharp, color: active),
+                          title: const Text('Create claims',
                               style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => AddNotification()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CreateComplaintsScreen()),
+                            );
                           },
                         ),
+
                         _buildDivider(),
                         ListTile(
-                          leading: const Icon(Icons.info, color: active),
-                          title: const Text('About', style: TextStyle(color: active)),
+                          leading: Icon(Icons.info, color: active),
+                          title: Text('About', style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => HomePage()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutPage()),
+                            );
                           },
                         ),
 
@@ -361,7 +485,7 @@ void _showMenu(BuildContext context) {
                           children: <Widget>[
                             ListTile(
                               title: Text(
-                                'Log In',
+                                'Log out',
                                 style: TextStyle(
                                   fontFamily: 'Bahij Janna',
                                   fontWeight: FontWeight.w600,
@@ -370,9 +494,10 @@ void _showMenu(BuildContext context) {
                                 ),
                                 textAlign: TextAlign.left,
                               ),
-                              trailing: const Icon(Icons.login, color: Colors.red),
+                              trailing:
+                                  const Icon(Icons.login, color: Colors.red),
                               onTap: () {
-                                Navigator.of(context).pop();
+                                SystemNavigator.pop();
                               },
                             ),
                             SizedBox(

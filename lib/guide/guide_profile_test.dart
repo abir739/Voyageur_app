@@ -7,6 +7,7 @@ import 'package:voyageur_app/claims/create_claims.dart';
 import 'package:voyageur_app/guide/profile_item.dart';
 import 'package:voyageur_app/planning/planning_screen.dart';
 import '../activites/visites.dart';
+import 'package:voyageur_app/about_page.dart';
 
 _makingPhoneCall(number) async {
   bool? res = await FlutterPhoneDirectCaller.callNumber(number);
@@ -14,14 +15,14 @@ _makingPhoneCall(number) async {
 
 _whatsapp(number) async {
   await launch(
-      "https://wa.me/$number?text=Hi, how are you?\n Can we meet sometimes?");
+      "https://wa.me/$number?text=Hi, how are you?\n Can we meet tomorrow?");
 }
 
 _mail(eMail) async {
   final mailtoLink = Mailto(
       to: ["$eMail"],
-      subject: "mail example",
-      body: "Nice app but needs some improvement.");
+      subject: "Extra Activity",
+      body: "I send this mail bc I called u but u didn't reply , I want to tell u about our activity for tommorow.");
   await launch("$mailtoLink");
 }
 
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await _makingPhoneCall("+216 92871567");
                     },
                     child: const ProfileItem(
-                      title: "Call Me Maybe",
+                      title: "Call Me",
                       icon: Icons.call,
                     ),
                   ),
@@ -95,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           title: "WhatsApp", icon: Icons.message)),
                   GestureDetector(
                     onTap: () async {
-                      await _mail("test@test.com");
+                      await _mail("Adam_Garfa.93@gmail.com");
                     },
                     child: const ProfileItem(
                       title: "E-mail",
@@ -297,15 +298,15 @@ void _showMenu(BuildContext context) {
                         ),
 
                         _buildDivider(),
-                        ListTile(
-                          leading: const Icon(Icons.info, color: active),
-                          title: const Text('About', style: TextStyle(color: active)),
+                       ListTile(
+                          leading: Icon(Icons.info, color: active),
+                          title: Text('About', style: TextStyle(color: active)),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => HomePage()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutPage()),
+                            );
                           },
                         ),
 
@@ -319,7 +320,7 @@ void _showMenu(BuildContext context) {
                           children: <Widget>[
                             ListTile(
                               title: Text(
-                                'Log In',
+                                'Log out',
                                 style: TextStyle(
                                   fontFamily: 'Bahij Janna',
                                   fontWeight: FontWeight.w600,

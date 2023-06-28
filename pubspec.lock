@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  awesome_dialog:
+    dependency: "direct main"
+    description:
+      name: awesome_dialog
+      sha256: ac08268b991f228fc6b8880b68ec030d2941bcc8df8b6a6551fb79f2bd36b7da
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   barcode_scan2:
     dependency: "direct main"
     description:
@@ -310,6 +318,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  flutter_emoji:
+    dependency: "direct main"
+    description:
+      name: flutter_emoji
+      sha256: a4341f2440b7f97c2ec4bb19a0903f313918a755c55d30ac746f1312085788dd
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   flutter_facebook_auth:
     dependency: "direct main"
     description:
@@ -366,6 +382,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.15"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      sha256: d2af03469eac832c591a1eba47c91ecc871fe5708e69967073c043b2d775ed93
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -488,6 +512,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.10.2+1"
+  graphs:
+    dependency: transitive
+    description:
+      name: graphs
+      sha256: "772db3d53d23361d4ffcf5a9bb091cf3ee9b22f2be52cd107cd7a2683a89ba0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   http:
     dependency: "direct main"
     description:
@@ -824,6 +856,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  rive:
+    dependency: transitive
+    description:
+      name: rive
+      sha256: "22e3755b75f4ea4492d2fecf4fc2acf1c8d0073df39781d290a20cbfe74c3760"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.1"
   rounded_loading_button:
     dependency: "direct main"
     description:

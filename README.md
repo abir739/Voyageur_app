@@ -1,16 +1,40 @@
 # voyageur_app
 
-A new Flutter project.
 
-## Getting Started
+Voyageur UI-app in Flutter & Firebase
+ cette application permet Au voyageur de :
+- S’authentifier
+- Afficher les planning de voyage/Hébergement.
+- Consulter la liste des différentes activités et voir tous les détails/descriptions d’une visite/activité.
+- Confirmer ou refuser l’activité.
+- Créer des commentaires et donner son avis sur un hôtel, restaurant, vol,. . .
+- Etre informé par des notifications sur les différentes événements organisés
 
-This project is a starting point for a Flutter application.
+# ScreenShots
+<table>
+  <tr>
+    <td style="margin-right: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/voy_1.jpg" alt="Screenshot 1"></td>
+    <td style="margin-left: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/voy_2.jpg" alt="Screenshot 2"></td>
+    <td style="margin-right: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/voy_3.jpg" alt="Screenshot 1"></td>
+  </tr>
+   <tr>
+   <td style="margin-left: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/voy_4.jpg" alt="Screenshot 2"></td>
+    <td style="margin-right: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/voy_5.jpg" alt="Screenshot 1"></td>
+    <td style="margin-left: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/p1.jpg" alt="Screenshot 2"></td>
+  </tr>
+   <tr>
+    <td style="margin-right: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/p2.jpg" alt="Screenshot 1"></td>
+    <td><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/p4.jpg" alt="Screenshot 2"></td>
+     <td style="margin-left: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/p5.jpg" alt="Screenshot 2"></td>
+  </tr>
+   <tr>
+   <td style="margin-left: 10px;"><img src="https://github.com/abir739/Voyageur_app/blob/main/Interfaces/1.jpg" alt="Screenshot 2"></td>
+  
+   
+  </tr>
+  <!-- Add more rows with screenshots as needed -->
+</table>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+>>>>>>> origin_1/main
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

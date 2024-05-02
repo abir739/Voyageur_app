@@ -2,13 +2,14 @@
 
 
 Voyageur UI-app in Flutter & Firebase
- cette application permet Au voyageur de :
-- S’authentifier
-- Afficher les planning de voyage/Hébergement.
-- Consulter la liste des différentes activités et voir tous les détails/descriptions d’une visite/activité.
-- Confirmer ou refuser l’activité.
-- Créer des commentaires et donner son avis sur un hôtel, restaurant, vol,. . .
-- Etre informé par des notifications sur les différentes événements organisés
+
+ This application allows the traveler to:
+-Authentication
+-Display travel/accommodation schedules
+-Consult the list of various activities and view all details/descriptions of -a visit/activity
+-Confirm or refuse activities
+-Create comments and give feedback on a hotel, restaurant, flight, etc.
+-Receive notifications about various organized events
 
 # ScreenShots
 <table>
@@ -32,9 +33,6 @@ Voyageur UI-app in Flutter & Firebase
   
    
   </tr>
-  <!-- Add more rows with screenshots as needed -->
 </table>
 
-
->>>>>>> origin_1/main
 
